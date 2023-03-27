@@ -80,9 +80,13 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
 
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Image::class)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -356,6 +360,36 @@ class Annonce
             // set the owning side to null (unless already changed)
             if ($message->getAnnonce() === $this) {
                 $message->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getAnnonce() === $this) {
+                $image->setAnnonce(null);
             }
         }
 
