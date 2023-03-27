@@ -2,18 +2,113 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# insertion du titre de chaque templates #}
+        <title>{% block title %}{% endblock %}</title>
+        {# icone dans l'onglet #}
+        <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/logo.svg') }}" />
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {# lien vers la bibliothèque d'icones fontawesome #}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+            {# lien vers le dossier style #}
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            {# SWIPER bundle #}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            {# MENU AUTHENTIFICATION #}
+            <div>
+                <ul class="headerList MenuLog">
+                    {% if app.user %}
+                        <li>
+                            <a href="#">Mon profil</a> 
+                        </li>
+
+                        <li> 
+                            <a href="{{ path ('app_logout') }}">Deconnexion</a>  
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ path ('app_register') }}"> Inscription</a>
+                        </li>
+
+                        <li> 
+                            <a href="{{ path ('app_login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="slogan">
+                <img id="logo" src="{{ asset ('img/logo.png') }}" alt="logo">
+                <h1 class="title-site">Found My Pet</h1>   
+            </div>
+
+            {# BARRE DE NAVIGATION #}
+            <nav>
+                <ul class="headerList">
+
+                    <li>
+                        <a class="navLink" href="{{ path ('app_home') }}">ACCUEIL</a>
+                    </li>
+
+                    <li>
+                        <a class="navLink" href="{{ path ('app_research') }}">RECHERCHES</a>
+                    </li>
+
+                    {% if app.user %}
+                        <li>
+                            <a class="navLink"  href="{{ path ('app_annonce') }}">POSTER UNE ANNONCE</a>
+                        </li>   
+                    {% endif %}
+
+                    <li>
+                        <a class="navLink"  href="{{ path ('app_lien_utiles') }}">LIENS UTILES</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+
+        {% block body %}
+        
+        {% endblock %}
+
+        <footer>
+            <div class="footerBloc flex">
+                <ul>
+                    <li>
+                        <a href="{{path ('app_home')}}">ACCUEIL</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path ('app_research') }}">RECHERCHES</a>
+                    </li>
+
+                    {% if app.user %}
+                    <li>
+                        <a href="{{path ('app_annonce')}}">POSTER UNE ANNONCE</a>
+                    </li>
+                    {% endif %}
+
+                    <li>
+                        <a href="{{path ('app_lien_utiles')}}">LIENS UTILES</a>
+                    </li>
+                </ul>
+                <div>
+                    <a href="#">mentions légales</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+            <button onclick="topFunction()" id="scrollToTop" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button> 
+
+        </footer>
+        {# lien avec le script du bouton "scrolltotop" #}
+        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+        {# script SWIPER #}
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     </body>
 </html>

@@ -1,0 +1,431 @@
+/*-------------------- STYLE GENERAL --------------------*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* couleurs */
+    --main-background-color: #AC8989;
+    --white: #FFFFFF; 
+    --form-background-color-black:#333;
+
+    /* taille de police */
+    --size-small-title: 20px;
+    --size-medium-title: 25px;
+    --size-large-title: 30px;
+    --size-extra-large-title: 40px;
+
+    /* padding */
+    --padding-small: 8px;
+    --padding-medium: 20px;
+
+    /* border */
+    --border-input-form: 1px solid #ccc;
+    --border-input-form-focus:1px solid #007bff;
+
+    /* border radius */
+    --border-radius-small:4px;
+    --border-radius-medium:10px;
+
+    /* transition color */
+    --transition-color:background-color 0.3s ease-in-out;
+}
+
+
+
+/*-------------------------- IMG -------------------------*/
+
+#logo { 
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border-radius: 90%;
+    background-color: white;
+    margin: 10px 30px;
+    flex: none;
+}
+
+
+/*------------------------- HEADER -----------------------*/
+
+header {
+    background-color: var(--main-background-color);
+    padding-bottom: 40px;
+    margin-bottom: auto;
+}
+
+/* MENU CONNEXION */
+
+.MenuLog {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0;
+}
+
+.MenuLog a {
+    padding: 20px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* IDENTITE SITE */
+
+.slogan {
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+/* "Found My Pet" title */
+
+.title-site {
+    color: var(--white);
+    font-size: var(--size-extra-large-title);
+    text-transform: uppercase;
+    text-align: center;
+    /* bloc faisant que le contenant */
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.title-site:hover {
+    text-decoration: underline;
+}
+
+
+/* section barre de navigation */
+
+
+nav .headerList {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.navLink {
+    color: var(--text_color);
+    background-color: var(--white);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px;
+    border: 1px solid #cacaca;
+    border-radius: 20px;
+}
+
+.navLink:hover {
+    text-decoration: underline red;
+    color: brown;
+}
+
+
+/*==================================== TEMPLATE ACCUEIL ====================================*/
+
+.home-title {
+    text-align: center;
+    margin: var(--padding-medium);
+}
+
+.draft {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.annonceCard {
+    border: var(--border-input-form);
+    border-radius: var(--border-radius-medium);
+    margin: 20px;
+    width: 30%;
+
+}
+
+.titleCard {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.iconCard {
+    border: var(--border-input-form);
+    border-radius: var(--border-radius-medium);
+    padding: 5px 10px;
+}
+
+.imgCard {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--border-radius-medium);
+}
+
+.annonceCard h3 {
+    text-align:end;
+    margin: 10px;
+}
+
+
+/*==================================== TEMPLATE ANNONCE ====================================*/
+
+.h2Form {
+    font-size: var(--size-large-title);
+    padding: var(--padding-medium);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.h3Form {
+    font-size: var(--size-medium-title);
+    padding: var(--padding-medium);
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin: 30px auto;
+}
+
+.h4Form {
+    font-size: var(--size-small-title);
+    padding: var(--padding-medium);
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.alignAnnonce {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.formDesc {
+    display: flex;  
+}
+
+.formBloc {
+    width: 50%;
+}
+
+.textFormBloc {
+    margin: 5px 40px;
+    align-items: center;
+}
+
+/* Style pour le formulaire */
+form {
+    padding: var(--padding-medium);
+    border-radius: var(--border-radius-medium);
+    border:var(--border-input-form);
+    margin: 50px 20px;
+}
+
+/* Styles pour la liste déroulante */
+select {
+    padding: var(--padding-small);
+    border-radius: var(--border-radius-small);
+    border:var(--border-input-form);
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Style pour les étiquettes de champ */
+label {
+    color: var(--form-background-color-black);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+input {
+    padding:var(--padding-small);
+    border-radius: var(--border-radius-small);
+    border: var(--border-input-form);
+    max-width: 400px;
+}
+
+input:focus {
+    border: var(--border-input-form-focus);  
+}
+
+/* Styles pour le champ de texte */
+textarea {
+    border-radius: var(--border-radius-small);
+    border: var(--border-input-form);
+    min-height: 120px;
+    width: 100%;
+    text-align: left;
+    resize: vertical; /* Permet de redimensionner le champ verticalement */
+}
+
+/* Style pour les cases à cocher */
+input[type="checkbox"] {
+    display: none;
+}
+  
+input[type="checkbox"] + label {
+    transition: var(--transition-color);
+    color: var(--form-background-color-black);
+    border-radius: var(--border-radius-small);
+    display: inline-block;
+    background-color: #eee;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+  
+input[type="checkbox"]:checked + label {
+    color: var(--white);
+    background-color: var(--form-background-color-black);
+}
+  
+/* Style pour le bouton de soumission */
+button[type="submit"] {
+    transition: var(--transition-color);
+    color: var(--white);
+    border-radius: var(--border-radius-small);
+    background-color: var(--form-background-color-black);
+    text-align: center;
+    padding: 20px 40px;
+    margin-top: 20px;
+    border: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+  
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+.submitAnnonce {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+
+/*========================================== TEMPLATE DESCRIPTIF ==========================================*/
+
+.descriptif-annonce {
+    background-color: var(--white);
+    border: 1px solid #e5e5e5;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    max-width: 1200px;
+    padding: 2px;
+    margin: 20px auto;
+}
+
+.header-description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: var(--border-radius-medium);
+    margin: 5px;
+}
+
+.header-description>* {
+    margin: 10px;
+}
+
+.statut-descriptif {
+    align-self: flex-end;
+    border-radius: var(--border-radius-small);
+    text-transform: uppercase;
+    color: #f2f2f2;
+    float: right;
+}
+
+.red-statut {
+    background-color: #ff0000;
+    padding: 10px 20px;
+    border: grey 1px solid;
+}
+
+.green-statut {
+    background-color: green;
+    padding: 10px 20px;
+    border: grey 1px solid;
+}
+
+.img-container-descriptif img {
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #e5e5e5;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.descriptif-annonce h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.animal-descriptif {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.table-descriptif {
+    margin: 20px auto;
+    align-items: center;
+    text-align: center;
+    border-collapse:collapse;
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+.table-descriptif td, .table-descriptif th {
+    text-align: center;
+    padding: 10px;
+}
+
+.table-descriptif td:not(:last-child), .table-descriptif th:not(:last-child) {
+    border-right: 1px solid black;
+}
+
+.propriétaire-descriptif {
+    margin-top: auto;
+}
+
+/*========================================== FOOTER ==========================================*/
+
+footer {
+    background-color: var(--main-background-color);
+    margin-top: auto;
+    padding: 20px 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.footerBloc {
+    justify-content: space-around;
+}
+
+
+/*-========================================= JAVASCRIPT =========================================-*/
+
+#scrollToTop {
+    position: fixed;
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 1;
+    border: none;
+    outline: none;
+    background-color:#3D3D3D;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 50%; /* Rounded corners */
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+}
