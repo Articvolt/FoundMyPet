@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LiensUtilesController extends AbstractController
 {
-    #[Route('/liens/utiles', name: 'app_liens_utiles')]
+    #[Route('/liens-utiles', name: 'app_liens_utiles')]
     public function index(): Response
     {
         return $this->render('liens_utiles/index.html.twig', [
