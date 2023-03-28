@@ -70,7 +70,7 @@ class Annonce
     #[ORM\Column(length: 100)]
     private ?string $dessinPoil = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
+    #[ORM\Column(type: Types::JSON)]
     private array $couleurPoil = [];
 
     #[ORM\ManyToOne(inversedBy: 'annonces')]
