@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ annonce.nomAnimal|upper }}{% endblock %}
+
+{% block body %}
+
+    <div class="descriptif-annonce">
+
+        <div class="header-description">
+
+            {# liste des images #}
+            {% for image in annonce.images %}
+            <div class="img-container-descriptif">
+                <img class="img-descriptif" src="{{ asset ('/uploads/' ~ image.name) }}" alt="Image">
+            </div>
+            {% endfor %}
+
+            <div class="right-description">
+                <div class="statut-descriptif">
+                    {# statut de l'annonce #}
+                    {% if annonce.category == 'perdu' %}
+                        <p class="red-statut">Perdu</p>
+                    {% elseif annonce.category == 'trouvé' %}
+                        <p class="green-statut">Trouvé</p>
+                    {% endif %}
+                </div>
+
+                <div class="animal-descriptif">
+                    <h2>
+                        {{ annonce.nomAnimal|upper }}
+    
+                        {# LOGO SEXE #}
+                        {% if annonce.sexeAnimal == 'Mâle' %}
+                            <i class="fa-solid fa-mars"></i>                
+                        {% elseif annonce.sexeAnimal == 'Femelle' %}
+                            <i class="fa-solid fa-venus"></i>                
+                        {% endif %} 
+                    </h2>
+    
+                    {# INFORMATIONS ANIMAL #}
+                    <table class="table-descriptif">
+                        <thead>
+                            <tr>
+                                <th>Age</th>
+                                <th>Pucé</th>
+                                <th>Tatoué</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ annonce.ageAnimal }}</td>
+                                <td>{{ annonce.puce }}</td>
+                                <td>{{ annonce.tatoue }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    {# DESCRIPTIF VISUELLE #}
+                    <table class="table-descriptif">
+                        <thead>
+                            <tr>
+                                <th>Taille de poil</th>
+                                <th>Couleur de poil</th>
+                                <th>Dessin de poil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ annonce.taillePoil }}</td>
+                                <td>{{ annonce.couleurPoil|join(', ') }}</td>
+                                <td>{{ annonce.dessinPoil }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                {# PROPRIETAIRE #}
+                <div class="propriétaire-descriptif">
+                    <div>
+                        <h3>Propriétaire de l'annonce</h3>
+                        <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
+                        <div>
+                            <p>Adresse mail : {{ annonce.adresseMail }}</p>
+                            <p>Téléphone : {{ annonce.telephone }}</p>
+                        </div>
+                    </div>
+            
+                    <div>
+                        <p>{{ annonce.adresse }}</p>
+                        <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+              
+
+        <div>
+            <h3>Description</h3>
+            <p>{{ annonce.description }}</p>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div>
+                <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
+                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
+            </div>
+        {% endif %}
+        
+    </div>
+
+    {# SECTION COMMENTAIRES #}
+
+    <div>
+        <h2>Commentaires</h2>
+        <p>
+            système a mettre en place
+        </p>
+    </div>
+
+{% endblock %}

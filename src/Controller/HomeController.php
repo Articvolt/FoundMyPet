@@ -18,4 +18,11 @@ class HomeController extends AbstractController
             'annonces' => $annonces,
         ]);
     }
+
+    #[Route('/mon-profil', name: 'app_profil')]
+    public function profil(AnnonceRepository $annonceRepository): Response
+    {
+        return $this->render('home/profil.html.twig', [
+        ]);
+    }
 }

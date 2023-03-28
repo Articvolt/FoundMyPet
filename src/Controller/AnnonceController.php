@@ -17,7 +17,7 @@ class AnnonceController extends AbstractController
 
     public function show(Annonce $annonce): Response
     {
-        return $this->render('home/show.html.twig', [
+        return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce
         ]);
     }
