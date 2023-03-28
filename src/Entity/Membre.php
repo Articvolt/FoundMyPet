@@ -40,6 +40,9 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'membre', targetEntity: Message::class)]
     private Collection $messages;
 
+    #[ORM\Column(length: 255)]
+    private ?string $pseudonyme = null;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -184,6 +187,18 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudonyme(): ?string
+    {
+        return $this->pseudonyme;
+    }
+
+    public function setPseudonyme(string $pseudonyme): self
+    {
+        $this->pseudonyme = $pseudonyme;
 
         return $this;
     }
