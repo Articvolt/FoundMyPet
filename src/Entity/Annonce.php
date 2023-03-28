@@ -80,7 +80,9 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
 
-    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Image::class,
+    orphanRemoval: true,
+    cascade: ["persist"] )]
     private Collection $images;
 
     public function __construct()
