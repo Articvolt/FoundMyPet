@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Annonce;
+use App\Form\AnnonceType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -83,7 +85,7 @@ class AnnonceController extends AbstractController
                     $fichier
                 );
                 // stocke l'image dans la base de données (son nom)
-                $img = new Images();
+                $img = new Image();
                 $img->setName($fichier);
                 if ($annonce !== null) {
                     // Ajouter l'image à l'annonce
