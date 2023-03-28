@@ -100,6 +100,9 @@ class AnnonceController extends AbstractController
             $annonce = $form->getData();
             // ajoute la date actuelle à la donnée "dateCreation"
             $annonce->setdateCreation(new \DateTime('now'));
+            // ajoute l'utilisateur connecté
+            $membre = $this->getUser();
+            $annonce->setMembre($membre);
             //prepare
             $entityManager->persist($annonce);
             //execute
