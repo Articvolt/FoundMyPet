@@ -338,6 +338,26 @@ button[type="submit"]:hover {
     color: black;
 }
 
+.profil-section .edit {
+    color: yellow;
+    text-shadow: 0 0 3px #000;
+}
+
+.profil-section .trash {
+    color: red;
+    text-shadow: 0 0 3px #000;
+}
+
+.profil-section .male {
+    color: blue;
+}
+
+.profil-section .femelle {
+    color: pink;
+}
+
+
+
 .profil-section a:hover {
     color: grey;
 }

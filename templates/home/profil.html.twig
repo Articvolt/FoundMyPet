@@ -28,18 +28,18 @@
                                 {{ annonce.nomAnimal }}
                             {# LOGO SEXE #}
                                 {% if annonce.sexeAnimal == 'Mâle' %}
-                                    (<i class="fa-solid fa-mars"></i>)                
+                                    (<i class="fa-solid fa-mars male"></i>)                
                                 {% elseif annonce.sexeAnimal == 'Femelle' %}
-                                    (<i class="fa-solid fa-venus"></i>)                
+                                    (<i class="fa-solid fa-venus femelle"></i>)                
                                 {% endif %}
                             </a>
                         </p>
                             <div>
                                 <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-pen-to-square edit"></i>
                                 </a>
                                 <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i class="fa-solid fa-trash trash"></i>
                                 </a>
                             </div>
                     </div>
