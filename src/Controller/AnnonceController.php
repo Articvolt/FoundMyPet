@@ -28,11 +28,12 @@ class AnnonceController extends AbstractController
 
     #[Route("/annonce/delete/{id}", name: "annonce_delete")]
 
-    public function delete(ManagerRegistry $doctrine, Annonce $annonce)
+    public function delete(ManagerRegistry $doctrine, Request $request, Annonce $annonce)
     {
         $entityManager = $doctrine->getManager();
 
         // Récupérer les images associées à l'annonce
+
         $images = $annonce->getImages();
 
         // Supprimer chaque fichier correspondant dans le dossier "upload"
@@ -47,7 +48,12 @@ class AnnonceController extends AbstractController
         $entityManager->remove($annonce);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_home');
+        // redirection de la route en fonction de la page d'origine
+        if (Request::create($request->headers->get('referer'))->getPathInfo() == $this->generateUrl('app_home')) {
+            return $this->redirectToRoute('app_home');
+        } else {
+            return $this->redirectToRoute('app_profil');
+        }
     }
 
     //================================= FONCTION D'AFFICHAGE ET D'EDITION DE L'ANNONCE ============================
