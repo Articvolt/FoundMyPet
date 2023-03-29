@@ -330,7 +330,8 @@ button[type="submit"]:hover {
 }
 
 .profil-section h2 {
-    padding: 5px 0;
+    padding: 10px 0;
+    text-align: center;
 }
 
 .profil-section a {

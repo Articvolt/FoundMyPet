@@ -7,7 +7,23 @@
     <div class="profil-bloc-align">
 
         <section class="profil-section">
-            <h2>Mon profil</h2>
+            <div class="profil-text-bloc">
+                <h2>Mon profil</h2>
+
+                <div >
+                    <h3>Pseudonyme</h3>
+                    <p>{{ app.user.pseudonyme }}</p>
+
+                    <h3>Accès à la messagerie</h3>
+                    <p>SYSTEME DE MESSAGERIE A PROGRAMMER</p>
+
+                    <div>
+                        <a href="{{ path('app_reset_password_request') }}">modifier mon mot de passe</a>
+                        {# suppression de compte #}
+                        <a href="{{ path('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
+                    </div>
+                </div>
+            </div>
         
         </section>
 
@@ -53,7 +69,6 @@
                 <p>possibilité de mettre des annonces en favoris</p>
             </div>
         </section>
-
 
     </div>
 {% endblock %}
