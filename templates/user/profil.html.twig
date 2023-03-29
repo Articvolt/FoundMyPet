@@ -17,7 +17,7 @@
                     <h3>Accès à la messagerie</h3>
                     <p>SYSTEME DE MESSAGERIE A PROGRAMMER</p>
 
-                    <div>
+                    <div class="profil-option">
                         <a href="{{ path('app_reset_password_request') }}">modifier mon mot de passe</a>
                         {# suppression de compte #}
                         <a href="{{ path('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>

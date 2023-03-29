@@ -357,7 +357,20 @@ button[type="submit"]:hover {
     color: pink;
 }
 
+.profil-option {
+    margin: 20px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
+.profil-option a {
+    padding: 5px;
+    border: var(--border-input-form);
+    border-radius: var(--border-radius-medium);
+    background-color: blue;
+    color: var(--white);
+}
 
 .profil-section a:hover {
     color: grey;
