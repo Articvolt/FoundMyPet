@@ -306,8 +306,47 @@ button[type="submit"]:hover {
     flex-wrap: wrap;
     justify-content: center;
 }
-  
 
+/*========================================== TEMPLATE PROFIL ==========================================*/
+
+.profil-bloc-align {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.profil-section {
+    border-radius: var(--border-radius-medium);
+    border: var(--border-input-form);
+    margin: 20px;
+    padding: var(--padding-small);
+    /* largeur du bloc maximum */
+    width: 100%;
+    max-width: 600px;
+}
+
+.profil-text-bloc{
+    padding: var(--padding-small);
+}
+
+.profil-section h2 {
+    padding: 5px 0;
+}
+
+.profil-section a {
+    text-decoration: none;
+    color: black;
+}
+
+.profil-section a:hover {
+    color: grey;
+}
+
+.icon-left {
+    display: flex;
+    justify-content:space-between;
+    padding: 5px 10px;
+}
 /*========================================== TEMPLATE DESCRIPTIF ==========================================*/
 
 .descriptif-annonce {

@@ -4,18 +4,53 @@
 
 {% block body %}
 
-    <div>
-        <section>
+    <div class="profil-bloc-align">
+
+        <section class="profil-section">
             <h2>Mon profil</h2>
+        
         </section>
 
-        <section>
-            <div>
-                 <h2>Mes annonces</h2>
+        <section class="profil-section">
+            <div class="profil-text-bloc">
+                <h2>Mes annonces</h2>
+
+                {% if annonces | length == 0 %}
+
+                    <p>Vous n'avez pas d'annonces !</p>
+
+                {% else %}
+
+                    {% for annonce in annonces %}
+                    <div class="icon-left">
+                        <p>
+                            <a href="{{ path ('annonce_show', {'id': annonce.id})}}">
+                                {{ annonce.nomAnimal }}
+                            {# LOGO SEXE #}
+                                {% if annonce.sexeAnimal == 'Mâle' %}
+                                    (<i class="fa-solid fa-mars"></i>)                
+                                {% elseif annonce.sexeAnimal == 'Femelle' %}
+                                    (<i class="fa-solid fa-venus"></i>)                
+                                {% endif %}
+                            </a>
+                        </p>
+                            <div>
+                                <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                    </div>
+                    {% endfor %}
+
+                {% endif %}
             </div>
 
-            <div>
+            <div class="profil-text-bloc">
                 <h2>Mes annonces suivies</h2>
+                <p>possibilité de mettre des annonces en favoris</p>
             </div>
         </section>
 

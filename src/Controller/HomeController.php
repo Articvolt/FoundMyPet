@@ -22,7 +22,12 @@ class HomeController extends AbstractController
     #[Route('/mon-profil', name: 'app_profil')]
     public function profil(AnnonceRepository $annonceRepository): Response
     {
+        $user = $this->getUser(); 
+        $annonces = $annonceRepository->findBy(['membre' => $user]);
+
+
         return $this->render('home/profil.html.twig', [
+            'annonces' => $annonces
         ]);
     }
 }
