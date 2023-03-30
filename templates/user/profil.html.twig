@@ -18,9 +18,10 @@
                     <p>SYSTEME DE MESSAGERIE A PROGRAMMER</p>
 
                     <div class="profil-option">
-                        <a href="{{ path('app_reset_password_request') }}">modifier mon mot de passe</a>
+                        {# modification mot de passe #}
+                        <a href="{{ path ('app_reset_password_request') }}">modifier mon mot de passe</a>
                         {# suppression de compte #}
-                        <a href="{{ path('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
+                        <a href="{{ path ('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                     {% for annonce in annonces %}
                     <div class="icon-left">
                         <p>
-                            <a href="{{ path ('annonce_show', {'id': annonce.id})}}">
+                            <a href="{{ path ('annonce_show', {'id': annonce.id}) }}">
                                 {{ annonce.nomAnimal }}
                             {# LOGO SEXE #}
                                 {% if annonce.sexeAnimal == 'Mâle' %}
@@ -51,10 +52,10 @@
                             </a>
                         </p>
                             <div>
-                                <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">
+                                <a href="{{ path ('annonce_edit', {'id':annonce.id}) }}">
                                     <i class="fa-solid fa-pen-to-square edit"></i>
                                 </a>
-                                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce ?')">
+                                <a href="{{ path ('annonce_delete', {'id':annonce.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce ?')">
                                     <i class="fa-solid fa-trash trash"></i>
                                 </a>
                             </div>
