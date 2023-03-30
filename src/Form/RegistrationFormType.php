@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -22,14 +23,16 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('pseudonyme', TextType::class)
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
-            //     ],
-            // ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'label' => "conditions d'utilisation",
+                'mapped' => false,
+                // 'required' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => "Vous devez accepter les termes d'utilisations",
+                    ]),
+                ]
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
@@ -38,6 +41,11 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options' => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Répetez le mot de passe'],
+                'constraints' => [
+                    // règle pour renforcer le mot de passe
+                    new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+                    "Il faut un mot de passe de 6 caractères avec 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial")
+                ]
             ])
         ;
     }

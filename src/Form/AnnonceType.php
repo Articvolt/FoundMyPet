@@ -150,6 +150,7 @@ class AnnonceType extends AbstractType
 
             ->add('couleurPoil', ChoiceType::class, [
                 'label' => 'couleur du pelage',
+                'row_attr' => ['class' => 'checkbox-annonce'],
                 'choices' => [
                     'roux' => 'roux' ,
                     'noir' => 'noir',

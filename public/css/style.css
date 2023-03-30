@@ -261,8 +261,8 @@ textarea {
     resize: vertical; /* Permet de redimensionner le champ verticalement */
 }
 
-/* Style pour les cases à cocher */
-input[type="checkbox"] {
+/* Style pour les cases à cocher annonce */
+.checkbox-annonce {
     display: none;
 }
   
