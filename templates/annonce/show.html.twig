@@ -112,9 +112,25 @@
 
     <div>
         <h2>Commentaires</h2>
-        <p>
-            système a mettre en place
-        </p>
+        {% if annonce.messages|length == 0 %}
+            <p>Aucun commentaire pour le moment.</p>
+        {% else %}
+            <ul>
+                {% for commentaire in annonce.messages %}
+                    <li>
+                        <strong>{{ commentaire.membre.pseudonyme }}</strong> - {{ commentaire.message }} ({{ commentaire.dateMessage|date('d/m/Y H:i') }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2>Ajouter un commentaire</h2>
+
+        {{ form_start(form) }}
+            {{ form_row(form.message) }}
+            {{ form_row(form._token) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
     </div>
 
 {% endblock %}
