@@ -102,40 +102,50 @@
         {% if is_granted('ROLE_ADMIN') %}
             <div>
                 <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
-                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
+                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce ?')">SUPPRIMER</a>
             </div>
         {% endif %}
         
-    </div>
-
-    {# SECTION COMMENTAIRES #}
-
-    <div>
-        <h2>Commentaires</h2>
-        {% if annonce.messages|length == 0 %}
-            <p>Aucun commentaire pour le moment.</p>
-        {% else %}
-            <ul>
-                {% for commentaire in annonce.messages %}
-                    <li>
-                        <strong>{{ commentaire.membre.pseudonyme }}</strong> - {{ commentaire.message }} ({{ commentaire.dateMessage|date('d/m/Y H:i') }})
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        {# ajout de commentaires #}
-        {% if app.user %}
-        
-            <h2>Ajouter un commentaire</h2>
+        <hr>
+        {# SECTION COMMENTAIRES #}
     
-            {{ form_start(form) }}
-                {{ form_row(form.message) }}
-                {{ form_row(form._token) }}
-                {{ form_row(form.submit) }}
-            {{ form_end(form) }}
-            
-        {% endif %}
+        <div>
+            {% if annonce.messages|length == 0 %}
+                <h2>{{annonce.messages| length}} Commentaire</h2>
+                <p>Aucun commentaire pour le moment.</p>
+            {% elseif annonce.messages|length == 1 %}
+                <h2>{{annonce.messages| length}} commentaire</h2>
+            {% else %}
+                <h2>{{annonce.messages| length}} commentaires</h2>
+            {% endif %}
+
+                    {% for commentaire in annonce.messages %}
+                        <div>
+                            <h3>{{ commentaire.membre.pseudonyme }} ({{ commentaire.dateMessage|date('d/m/Y H:i') }})</h3>
+                            <p>
+                                {{ commentaire.message }}
+                            </p>
+                            <div>
+                                <a href="#">editer</a>
+                                <a href="#">supprimer</a>
+                            </div>  
+                        </div>
+                    {% endfor %}
+    
+            {# ajout de commentaires #}
+            {% if app.user %}
+    
+                <h2>Ajouter un commentaire</h2>
+        
+                {{ form_start(form) }}
+                    {{ form_row(form.message) }}
+                    {{ form_row(form.submit) }}
+                {{ form_end(form) }}
+                
+            {% endif %}
+        </div>
+
     </div>
+
 
 {% endblock %}

@@ -87,12 +87,12 @@
                 <p>{{ annonce.description }}</p>
             </div>
 
-            {# {% if is_granted('ROLE_ADMIN') %} #}
+            {% if is_granted('ROLE_ADMIN') %}
                 <div>
                     <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
                     <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
                 </div>
-            {# {% endif %} #}
+            {% endif %}
         </div>
         {% endfor %}
     </div>
