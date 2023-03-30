@@ -124,13 +124,18 @@
             </ul>
         {% endif %}
 
-        <h2>Ajouter un commentaire</h2>
-
-        {{ form_start(form) }}
-            {{ form_row(form.message) }}
-            {{ form_row(form._token) }}
-            {{ form_row(form.submit) }}
-        {{ form_end(form) }}
+        {# ajout de commentaires #}
+        {% if app.user %}
+        
+            <h2>Ajouter un commentaire</h2>
+    
+            {{ form_start(form) }}
+                {{ form_row(form.message) }}
+                {{ form_row(form._token) }}
+                {{ form_row(form.submit) }}
+            {{ form_end(form) }}
+            
+        {% endif %}
     </div>
 
 {% endblock %}

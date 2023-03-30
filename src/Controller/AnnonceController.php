@@ -28,21 +28,24 @@ class AnnonceController extends AbstractController
 
         // Si les données du formulaires sont sousmises et validées alors :
             if ($form->isSubmitted() && $form->isValid()) {
-                
-                // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
-                $entityManager = $doctrine->getManager();
-        
-                $message = $form->getData();
-                $message->setAnnonce($annonce);
-                $message->setMembre($user);
-                $message->setdateMessage(new \DateTime('now'));
-        
-                //prepare
-                $entityManager->persist($message);
-                //execute
-                $entityManager->flush();
+                if ($this->isGranted('ROLE_USER')) {
+                    // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
+                    $entityManager = $doctrine->getManager();
+            
+                    $message = $form->getData();
+                    $message->setAnnonce($annonce);
+                    $message->setMembre($user);
+                    $message->setdateMessage(new \DateTime('now'));
+            
+                    //prepare
+                    $entityManager->persist($message);
+                    //execute
+                    $entityManager->flush();
 
-                return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+                    return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+            } else {
+                $this->addFlash('warning', 'Vous devez vous connecter ou vous inscrire pour ajouter un commentaire.');
+            }
         }
         return $this->render('annonce/show.html.twig', [
             'annonce' => $annonce,
