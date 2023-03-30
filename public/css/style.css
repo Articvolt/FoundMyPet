@@ -265,7 +265,7 @@ textarea {
 .checkbox-annonce {
     display: none;
 }
-  
+
 input[type="checkbox"] + label {
     transition: var(--transition-color);
     color: var(--form-background-color-black);
@@ -276,12 +276,12 @@ input[type="checkbox"] + label {
     margin: 5px;
     cursor: pointer;
 }
-  
+
 input[type="checkbox"]:checked + label {
     color: var(--white);
     background-color: var(--form-background-color-black);
 }
-  
+
 /* Style pour le bouton de soumission */
 button[type="submit"] {
     transition: var(--transition-color);
@@ -296,11 +296,15 @@ button[type="submit"] {
     text-transform: uppercase;
     cursor: pointer;
 }
-  
+
 button[type="submit"]:hover {
     background-color: #555;
 }
 
+.alignAnnonce input[type="checkbox"] {
+    display: none;    
+}
+  
 .submitAnnonce {
     display: flex;
     flex-wrap: wrap;

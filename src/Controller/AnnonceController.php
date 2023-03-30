@@ -124,4 +124,6 @@ class AnnonceController extends AbstractController
             'edit' => $annonce->getId()
         ]);
     }
+
+    
 }
