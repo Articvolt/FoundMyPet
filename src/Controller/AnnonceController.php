@@ -8,6 +8,7 @@ use App\Entity\Message;
 use App\Form\AnnonceType;
 use App\Form\CommentaireType;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +54,24 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+    //============================= SUPPRIMER MESSAGE ================================================
+    
+    #[Route("/annonce/{id}/deleteMessage/{idMessage}", name: "message_delete")]
+    #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
+    #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
 
+    public function deleteMessage(ManagerRegistry $doctrine, Annonce $annonce, Message $message) 
+    {
+
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($message);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+    }
+
+    
     //============================= SUPPRIMER ANNONCE + IMAGE STOCKEE ================================================
 
 

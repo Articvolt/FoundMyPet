@@ -127,7 +127,7 @@
                             </p>
                             <div>
                                 <a href="#">editer</a>
-                                <a href="#">supprimer</a>
+                                <a href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">supprimer</a>
                             </div>  
                         </div>
                     {% endfor %}
