@@ -126,7 +126,7 @@
                                 {{ commentaire.message }}
                             </p>
                             <div>
-                                <a href="#">editer</a>
+                                <a href="{{ path ('message_edit', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">editer</a>
                                 <a href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">supprimer</a>
                             </div>  
                         </div>

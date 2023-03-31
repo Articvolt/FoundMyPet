@@ -8,6 +8,7 @@ use App\Entity\Message;
 use App\Form\AnnonceType;
 use App\Form\CommentaireType;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,11 +55,42 @@ class AnnonceController extends AbstractController
         ]);
     }
 
+
+    //============================= EDITER MESSAGE ================================================
+    
+    #[Route("/annonce/{id}/editMessage/{idMessage}", name: "message_edit")]
+    #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
+    #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
+    #[IsGranted("ROLE_USER")]
+
+    public function editMessage(ManagerRegistry $doctrine, Annonce $annonce, Message $message, Request $request) 
+    {
+        $form = $this->createForm(CommentaireType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $doctrine->getManager();
+            //prepare
+            $entityManager->persist($message);
+            //execute
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+        }
+        return $this->render('annonce/commentaire_editer.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView()
+        ]);
+    }
+
     //============================= SUPPRIMER MESSAGE ================================================
     
     #[Route("/annonce/{id}/deleteMessage/{idMessage}", name: "message_delete")]
     #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
     #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
+    #[IsGranted("ROLE_USER")]
+
 
     public function deleteMessage(ManagerRegistry $doctrine, Annonce $annonce, Message $message) 
     {
@@ -76,6 +108,7 @@ class AnnonceController extends AbstractController
 
 
     #[Route("/annonce/delete/{id}", name: "annonce_delete")]
+    #[IsGranted("ROLE_USER")]
 
     public function delete(ManagerRegistry $doctrine, Request $request, Annonce $annonce)
     {
