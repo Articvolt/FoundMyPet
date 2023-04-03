@@ -2,35 +2,77 @@
 
 namespace App\Controller;
 
-use App\Form\RechercheType;
-use App\Model\RechercheData;
+use App\Entity\Annonce;
+
 use App\Repository\AnnonceRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RechercheController extends AbstractController
 {
     #[Route('/recherche', name: 'app_recherche')]
-    public function index(AnnonceRepository $annonceRepository, Request $request): Response
+    public function index(AnnonceRepository $annonceRepository, ManagerRegistry $doctrine, Request $request): Response
     {
         $annonces = $annonceRepository->findAll();
 
-        $rechercheData = new RechercheData();
-        // création du formulaire
-        $form = $this->createForm(RechercheType::class, $rechercheData);
-        // récupèration de la requête par le formulaire
+        $form = $this->createFormBuilder()
+            ->add('espece', ChoiceType::class, [
+                'choices' => [
+                    'chat' => 'chat',
+                    'chien' => 'chien',
+                ],
+                'required' => false,
+                'label' => 'Espèce',
+            ])
+            ->add('ville', TextType::class, [
+                'required' => false,
+                'label' => 'Ville',
+            ])
+            ->add('rechercher', SubmitType::class)
+            ->getForm();
+
         $form->handleRequest($request);
 
-        // condition si formulaire validé et vérifié
-        if ( $form->isSubmitted() && $form->isValid()) {
-            dd($rechercheData);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            // dd($data);1
+
+            $qb = $annonceRepository
+                ->createQueryBuilder('a');
+
+            if ($data['espece']) {
+                $qb->andWhere('a.espece = :espece')
+                    ->setParameter('espece', $data['espece']);
+            }
+
+            if ($data['ville']) {
+                $qb->andWhere('a.ville LIKE :ville')
+                    ->setParameter('ville', '%' . $data['ville'] . '%');
+            }
+
+            $annonces = $qb->getQuery()
+                ->getResult();
+
+            return $this->render('recherche/index.html.twig', [
+                'form' => $form->createView(),
+                'annonces' => $annonces,
+            ]);
         }
 
         return $this->render('recherche/index.html.twig', [
-            'annonces' => $annonces,
             'form' => $form->createView(),
+            'annonces' => $annonces,
         ]);
+
+        // return $this->render('recherche/index.html.twig', [
+        //     'annonces' => $annonces,
+        // ]);
     }
 }
