@@ -93,8 +93,16 @@
                                     <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
                                 </div>
                             {% endif %}
+
                         </div>
                     {% endfor %}
+
+                    {# <div>
+                        {{ knp_pagination_render(annonces) }}
+                    </div> #}
                 </div>
+
+        {% else %}
+            <p>il n'y a pas de resultat</p>
         {% endif %}
 {% endblock %}

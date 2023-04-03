@@ -6,6 +6,7 @@ use App\Entity\Annonce;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RechercheController extends AbstractController
 {
     #[Route('/recherche', name: 'app_recherche')]
-    public function index(AnnonceRepository $annonceRepository, ManagerRegistry $doctrine, Request $request): Response
+    public function index(AnnonceRepository $annonceRepository, PaginatorInterface $paginatorInterface , ManagerRegistry $doctrine, Request $request): Response
     {
         $annonces = $annonceRepository->findAll();
 
@@ -34,6 +35,7 @@ class RechercheController extends AbstractController
                 'required' => false,
                 'label' => 'Ville',
             ])
+            
             ->add('rechercher', SubmitType::class)
             ->getForm();
 
