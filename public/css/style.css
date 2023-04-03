@@ -12,14 +12,23 @@ html {
 :root {
     /* couleurs */
     --main-background-color: #AC8989;
-    --white: #FFFFFF; 
+    --white: #FFFFFF;
+    --grey: #EEEEEE; 
+    --grey-darker: #555555;
+    --black: #000000;
     --form-background-color-black:#333;
+    --yellow: #FFFF00;
+    --red: #FF0000;
 
     /* taille de police */
     --size-small-title: 20px;
     --size-medium-title: 25px;
     --size-large-title: 30px;
     --size-extra-large-title: 40px;
+
+    /* margin */
+    --margin-small: 5px;
+    --margin-medium: 10px;
 
     /* padding */
     --padding-small: 8px;
@@ -343,7 +352,7 @@ button[type="submit"]:hover {
 }
 
 .profil-section .edit {
-    color: yellow;
+    color: #ffff00;
     text-shadow: 0 0 3px #000;
 }
 
