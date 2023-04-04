@@ -129,16 +129,20 @@
                                 {% if is_granted('ROLE_USER') and commentaire.membre == app.user %}
                                     <a href="{{ path('message_edit', {'id': annonce.id, 'idMessage': commentaire.id}) }}">Modifier</a>
                                 {% endif %}
-                                {# <a href="{{ path ('message_edit', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">editer</a> #}
-                                <a href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">supprimer</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">supprimer</a>                                
+                                {% endif %}
                             </div>  
                         </div>
                     {% endfor %}
     
             {# ajout de commentaires #}
             {% if app.user %}
-    
-                <h2>Ajouter un commentaire</h2>
+                        {% if edit %}
+                            <h2>Modifier un commentaire</h2>
+                        {% else %} 
+                            <h2>Ajouter un commentaire</h2>  
+                        {% endif %}
         
                 {{ form_start(form) }}
                     {{ form_row(form.message) }}
