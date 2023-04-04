@@ -54,10 +54,15 @@ public function showOrEditMessage(Annonce $annonce, ManagerRegistry $doctrine, M
         return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
     }
 
+    // leaflet
+    $adresse = $annonce->AdresseComplete();
+
     return $this->render( 'annonce/show.html.twig', [
         'annonce' => $annonce,
         'form' => $form->createView(),
         'edit' => $edit ? $message->getId() : null,
+        'adresse' => $adresse,
+
     ]);
 }
 
@@ -177,10 +182,14 @@ public function showOrEditMessage(Annonce $annonce, ManagerRegistry $doctrine, M
             return $this->redirectToRoute('app_home');
         }
 
+        
+
+
         return $this->render('annonce/index.html.twig', [
             'formAddAnnonce' => $form->createView(),
             'annonces' => $annonces,
-            'edit' => $annonce->getId()
+            'edit' => $annonce->getId(),
+
         ]);
     }
 

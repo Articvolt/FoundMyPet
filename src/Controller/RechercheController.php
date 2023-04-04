@@ -83,8 +83,6 @@ class RechercheController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            // dd($data);1
-
             $qb = $annonceRepository
                 ->createQueryBuilder('a');
 
@@ -136,9 +134,5 @@ class RechercheController extends AbstractController
             'form' => $form->createView(),
             'annonces' => $annonces,
         ]);
-
-        // return $this->render('recherche/index.html.twig', [
-        //     'annonces' => $annonces,
-        // ]);
     }
 }

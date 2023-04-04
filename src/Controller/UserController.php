@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Repository\AnnonceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,5 +41,5 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_home');
     }
-    
+  
 }

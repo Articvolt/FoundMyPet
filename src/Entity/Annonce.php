@@ -398,6 +398,10 @@ class Annonce
         return $this;
     }
 
+    public function AdresseComplete() {
+        return $this->getAdresse().''.$this->getCodePostal().''.$this->getVille();
+    }
+
     public function __toString()
     {
         return $this->nomAnimal;
