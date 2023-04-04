@@ -24,20 +24,57 @@ class RechercheController extends AbstractController
         $annonces = $annonceRepository->findAll();
 
         $form = $this->createFormBuilder()
-        
+
             ->add('espece', ChoiceType::class, [
                 'choices' => [
                     'chat' => 'chat',
                     'chien' => 'chien',
                 ],
                 'required' => false,
-                'label' => 'Espèce',
+                'label' => 'Espece',
+            ])
+            ->add('sexeAnimal', ChoiceType::class, [
+                'choices' => [
+                    'Mâle' => 'Mâle',
+                    'Femelle' => 'Femelle',
+                ],
+                'required' => false,
+                'label' => 'sexe',
+            ])
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'perdu' => 'perdu',
+                    'trouvé' => 'trouvé',
+                ],
+                'required' => false,
+                'label' => 'Statut',
+            ])
+            ->add('puce', ChoiceType::class, [
+                'choices' => [
+                    'oui' => 'oui',
+                    'non' => 'non',
+                    'ne sais pas' => 'ne sais pas',
+                ],
+                'required' => false,
+                'label' => 'pucé ?',
+            ])
+            ->add('tatoue', ChoiceType::class, [
+                'choices' => [
+                    'oui' => 'oui',
+                    'non' => 'non',
+                    'ne sais pas' => 'ne sais pas',
+                ],
+                'required' => false,
+                'label' => 'pucé ?',
             ])
             ->add('ville', TextType::class, [
                 'required' => false,
                 'label' => 'Ville',
             ])
-            
+            ->add('nomAnimal', TextType::class, [
+                'required' => false,
+                'label' => "nom de l'animal",
+            ])
             ->add('rechercher', SubmitType::class)
             ->getForm();
 
@@ -56,9 +93,34 @@ class RechercheController extends AbstractController
                     ->setParameter('espece', $data['espece']);
             }
 
+            if ($data['tatoue']) {
+                $qb->andWhere('a.tatoue = :tatoue')
+                    ->setParameter('tatoue', $data['tatoue']);
+            }
+
+            if ($data['puce']) {
+                $qb->andWhere('a.puce = :puce')
+                    ->setParameter('puce', $data['puce']);
+            }
+
+            if ($data['sexeAnimal']) {
+                $qb->andWhere('a.sexeAnimal = :sexeAnimal')
+                    ->setParameter('sexeAnimal', $data['sexeAnimal']);
+            }
+
+            if ($data['category']) {
+                $qb->andWhere('a.category = :category')
+                    ->setParameter('category', $data['category']);
+            }
+
             if ($data['ville']) {
                 $qb->andWhere('a.ville LIKE :ville')
                     ->setParameter('ville', '%' . $data['ville'] . '%');
+            }
+
+            if ($data['nomAnimal']) {
+                $qb->andWhere('a.nomAnimal LIKE :nomAnimal')
+                    ->setParameter('nomAnimal', '%' . $data['nomAnimal'] . '%');
             }
 
             $annonces = $qb->getQuery()
