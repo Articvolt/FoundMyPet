@@ -18,72 +18,48 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
 {
+
     #[Route("/annonce/{id}", name: "annonce_show")]
-
-    public function show(Annonce $annonce, ManagerRegistry $doctrine, Request $request): Response
-    {
-        $user = $this->getUser(); 
-
-        $message= new Message();
-        $form = $this->createForm(CommentaireType::class, $message);
-        $form->handleRequest($request);
-
-        // Si les données du formulaires sont sousmises et validées alors :
-            if ($form->isSubmitted() && $form->isValid()) {
-                if ($this->isGranted('ROLE_USER')) {
-                    // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
-                    $entityManager = $doctrine->getManager();
-            
-                    $message = $form->getData();
-                    $message->setAnnonce($annonce);
-                    $message->setMembre($user);
-                    $message->setdateMessage(new \DateTime('now'));
-            
-                    //prepare
-                    $entityManager->persist($message);
-                    //execute
-                    
-                    $entityManager->flush();
-
-                    return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
-            } else {
-                $this->addFlash('warning', 'Vous devez vous connecter ou vous inscrire pour ajouter un commentaire.');
-            }
-        }
-        return $this->render('annonce/show.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form->createView(),
-        ]);
-    }
-
-
-    //============================= EDITER MESSAGE ================================================
-    
     #[Route("/annonce/{id}/editMessage/{idMessage}", name: "message_edit")]
     #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
     #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
-    #[IsGranted("ROLE_USER")]
 
-    public function editMessage(ManagerRegistry $doctrine, Annonce $annonce, Message $message, Request $request) 
-    {
-        $form = $this->createForm(CommentaireType::class, $message);
-        $form->handleRequest($request);
+public function showOrEditMessage(Annonce $annonce, ManagerRegistry $doctrine, Message $message = null, Request $request) 
+{
+    $user = $this->getUser();
+    $edit = $message ? true : false;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $entityManager = $doctrine->getManager();
-            //prepare
-            $entityManager->persist($message);
-            //execute
-            $entityManager->flush();
-    
-            return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
-        }
-        return $this->render('annonce/commentaire_editer.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form->createView()
-        ]);
+    if (!$message) {
+        $message = new Message();
     }
+
+    $form = $this->createForm(CommentaireType::class, $message);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+
+        $entityManager = $doctrine->getManager();
+
+        if (!$edit) {
+            $message->setAnnonce($annonce);
+            $message->setMembre($user);
+            $message->setdateMessage(new \DateTime('now'));
+        }
+        
+        //prepare
+        $entityManager->persist($message);
+        //execute
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+    }
+
+    return $this->render( 'annonce/show.html.twig', [
+        'annonce' => $annonce,
+        'form' => $form->createView(),
+        'edit' => $edit ? $message->getId() : null,
+    ]);
+}
 
     //============================= SUPPRIMER MESSAGE ================================================
     

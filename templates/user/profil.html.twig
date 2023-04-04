@@ -41,6 +41,12 @@
                     {% for annonce in annonces %}
                     <div class="icon-left">
                         <p>
+                        {# nom de l'espece #}
+                        {% if annonce.espece == 'chat' %}
+                                <i class="fa-solid fa-cat"></i>
+                        {% elseif annonce.espece == 'chien' %}
+                                <i class="fa-solid fa-dog"></i>
+                        {% endif %}
                             <a href="{{ path ('annonce_show', {'id': annonce.id}) }}">
                                 {{ annonce.nomAnimal }}
                             {# LOGO SEXE #}
