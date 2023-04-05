@@ -153,9 +153,12 @@
         </div>
     </div>
     <div id="map"></div>
+    {{ dump(annonce) }}
+    {{ dump(datageo[0].lat) }}
+    {{ dump(datageo[0].lon) }}
 
     <script>
-        var map = L.map("map").setView([46.2276, 2.2137],6);
+        var map = L.map("map").setView([{{datageo[0].lat}},{{datageo[0].lon}}],16);
 
         var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
@@ -189,11 +192,11 @@
           }
         });
 
-        var circle = L.circle([46.2276, 2.2137], {
+        var circle = L.circle([{{datageo[0].lat}},{{datageo[0].lon}}], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: 500
+            radius: 200
         }).addTo(map);
       </script>
       

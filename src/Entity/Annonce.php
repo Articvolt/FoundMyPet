@@ -398,8 +398,8 @@ class Annonce
         return $this;
     }
 
-    public function AdresseComplete() {
-        return $this->getAdresse().''.$this->getCodePostal().''.$this->getVille();
+    public function AdresseCompleteAPI() {
+        return urlencode($this->adresse." ".$this->codePostal." ".$this->ville);
     }
 
     public function __toString()

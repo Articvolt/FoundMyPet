@@ -7,6 +7,7 @@ use App\Entity\Annonce;
 use App\Entity\Message;
 use App\Form\AnnonceType;
 use App\Form\CommentaireType;
+use App\HttpClient\NominatimHttpClient;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -24,7 +25,7 @@ class AnnonceController extends AbstractController
     #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
     #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
 
-public function showOrEditMessage(Annonce $annonce, ManagerRegistry $doctrine, Message $message = null, Request $request) 
+public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominatim , ManagerRegistry $doctrine, Message $message = null, Request $request) 
 {
     $user = $this->getUser();
     $edit = $message ? true : false;
@@ -55,13 +56,14 @@ public function showOrEditMessage(Annonce $annonce, ManagerRegistry $doctrine, M
     }
 
     // leaflet
-    $adresse = $annonce->AdresseComplete();
+    $adresse = $annonce->AdresseCompleteAPI();
+    $datageo= $nominatim->getLocation($adresse);
 
     return $this->render( 'annonce/show.html.twig', [
         'annonce' => $annonce,
         'form' => $form->createView(),
         'edit' => $edit ? $message->getId() : null,
-        'adresse' => $adresse,
+        'datageo' => $datageo,
 
     ]);
 }
