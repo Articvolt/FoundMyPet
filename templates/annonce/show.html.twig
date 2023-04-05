@@ -163,7 +163,7 @@
     #}
 
     <script>
-        {# condition si l'adresse existe #}
+        // vérifie si les coordonnées sont valides
         {% if datageo|length > 0 %}
             var map = L.map("map").setView([{{datageo[0].lat}},{{datageo[0].lon}}],16);
         

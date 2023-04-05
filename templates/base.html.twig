@@ -30,6 +30,12 @@
             {# MENU AUTHENTIFICATION #}
             <div>
                 <ul class="headerList MenuLog">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ path ('app_admin') }}">panneau administrateur</a>
+                        </li>
+                    {% endif %}
+
                     {% if app.user %}
                         <li>
                             <a href="{{ path ('app_profil') }}">Mon profil</a> 

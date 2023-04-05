@@ -14,6 +14,12 @@
                     <h3>Pseudonyme</h3>
                     <p>{{ app.user.pseudonyme }}</p>
 
+                    <h2>Modifier mon pseudonyme</h2>
+                    {{ form_start(form) }}
+                        {{ form_row(form.pseudonyme) }}
+                        {{ form_row(form.submit) }}
+                    {{ form_end(form) }}
+
                     <div class="profil-option">
                         {# modification mot de passe #}
                         <a href="{{ path ('app_reset_password_request') }}">modifier mon mot de passe</a>
