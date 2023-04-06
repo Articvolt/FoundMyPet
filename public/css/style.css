@@ -32,6 +32,7 @@
     /* margin */
     --margin-small: 5px;
     --margin-medium: 10px;
+    --margin-large: 20px;
 
     /* padding */
     --padding-small: 4px;
@@ -52,6 +53,11 @@
 
 body {
     background-color: var(--white-darker);
+}
+
+.title {
+    text-align: center;
+    margin: var(--margin-large);
 }
 
 
@@ -189,8 +195,8 @@ nav .headerList {
 }
 
 .imgCard {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: var(--border-radius-medium);
 }

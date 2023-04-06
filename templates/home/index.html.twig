@@ -19,7 +19,6 @@
         {% for annonce in annonces %}
 
         <div class="annonceCard">
-
             <div>
                 <div class="titleCard">
                     {# liste des images #}
@@ -83,10 +82,6 @@
                 <p>Taille de poil : {{ annonce.taillePoil }}</p>
                 <p>Couleur de poil : {{ annonce.couleurPoil|join(', ') }}</p>
                 <p>Dessin de poil : {{ annonce.dessinPoil }}</p>
-            </div>
-            <div>
-                <h3>Description</h3>
-                <p>{{ annonce.description }}</p>
             </div>
 
             {% if is_granted('ROLE_ADMIN') %}
