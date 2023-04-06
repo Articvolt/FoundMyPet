@@ -31,26 +31,26 @@
             <div>
                 <ul class="headerList MenuLog">
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li>
-                            <a href="{{ path ('app_admin') }}">Administrateur</a>
+                        <li class="headerListLi">
+                            <a class="navLink" href="{{ path ('app_admin') }}">Administrateur</a>
                         </li>
                     {% endif %}
 
                     {% if app.user %}
                         <li>
-                            <a href="{{ path ('app_profil') }}">Mon profil</a> 
+                            <a class="navLink" href="{{ path ('app_profil') }}">Mon profil</a> 
                         </li>
 
                         <li> 
-                            <a href="{{ path ('app_logout') }}">Deconnexion</a>  
+                            <a class="navLink" href="{{ path ('app_logout') }}">Deconnexion</a>  
                         </li>
                     {% else %}
                         <li>
-                            <a href="{{ path ('app_register') }}"> Inscription</a>
+                            <a class="navLink" href="{{ path ('app_register') }}"> Inscription</a>
                         </li>
 
                         <li> 
-                            <a href="{{ path ('app_login') }}">Connexion</a>
+                            <a class="navLink" href="{{ path ('app_login') }}">Connexion</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -58,7 +58,7 @@
 
             <div class="slogan">
                 <img id="logo" src="{{ asset ('img/logo.png') }}" alt="logo">
-                <h1 class="title-site">Found My Pet</h1>   
+                <h1 class="title-site navLink">Found My Pet</h1>   
             </div>
 
             {# BARRE DE NAVIGATION #}
@@ -92,30 +92,36 @@
         {% endblock %}
 
         <footer>
-            <div class="footerBloc flex">
-                <ul>
-                    <li>
-                        <a href="{{path ('app_home')}}">ACCUEIL</a>
-                    </li>
-
-                    <li>
-                        <a href="{{ path ('app_recherche') }}">RECHERCHES</a>
-                    </li>
-
-                    {% if app.user %}
-                    <li>
-                        <a href="{{path ('app_annonce')}}">POSTER UNE ANNONCE</a>
-                    </li>
-                    {% endif %}
-
-                    <li>
-                        <a href="{{path ('app_liens_utiles')}}">LIENS UTILES</a>
-                    </li>
-                </ul>
+            <div class="footerBloc">
                 <div>
-                    <a href="#">mentions légales</a>
-                    <a href="#">CGU</a>
+                    <h2 class="footerTitle">Plan du site</h2>
+                    <ul>
+                        <li>
+                            <a class="footerLink" href="{{path ('app_home')}}">Accueil</a>
+                        </li>
+    
+                        <li>
+                            <a class="footerLink" href="{{ path ('app_recherche') }}">Recherches</a>
+                        </li>
+    
+                        {% if app.user %}
+                        <li>
+                            <a class="footerLink" href="{{path ('app_annonce')}}">Poster une annonce</a>
+                        </li>
+                        {% endif %}
+    
+                        <li>
+                            <a class="footerLink" href="{{path ('app_liens_utiles')}}">Liens utiles</a>
+                        </li>
+                    </ul>
                 </div>
+                    <div>
+                        <h2 class="footerTitle">FoundMyPet</h2>
+                        <div class="footerLegal">
+                            <a class="footerLink" href="#">mentions légales</a>
+                            <a class="footerLink" href="#">CGU</a>
+                        </div>
+                    </div>
             </div>
             <button onclick="topFunction()" id="scrollToTop" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button> 
 

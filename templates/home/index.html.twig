@@ -5,13 +5,15 @@
 
 {% block body %}
 
-    {% if app.user %}
-        <h2 class="home-title">Bienvenue sur le site {{ app.user.pseudonyme }} !</h2>
-    {% else %}
-        <h2 class="home-title">Bienvenue sur le site !</h2>
-    {% endif %}
-    
-    <p>Toutes les annonces postées sur les animaux perdus ou retrouvés.</p>
+    <div class="textIntro">
+        {% if app.user %}
+            <h2 class="home-title">Bienvenue sur le site {{ app.user.pseudonyme }} !</h2>
+        {% else %}
+            <h2 class="home-title">Bienvenue sur le site !</h2>
+        {% endif %}
+        
+        <p>Toutes les annonces postées sur les animaux perdus ou retrouvés.</p>
+    </div>
 
     <div class="draft">
         {% for annonce in annonces %}

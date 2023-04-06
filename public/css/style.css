@@ -3,15 +3,12 @@
     box-sizing: border-box;
     margin: 0;
     list-style: none;
-}
-
-html {
-    scroll-behavior: smooth;
+    font-family: var(--font-lato);
 }
 
 :root {
     /* couleurs */
-    --main-background-color: #AC8989;
+    --pink-smoothy: #AC8989;
     --white: #FFFFFF;
     --grey: #EEEEEE; 
     --grey-darker: #555555;
@@ -19,6 +16,12 @@ html {
     --form-background-color-black:#333;
     --yellow: #FFFF00;
     --red: #FF0000;
+    --green: #00FF00;
+    --blue: #0000FF;
+    --white-darker: #f3f3f8;
+
+    /* font-family */
+    --font-lato: Lato, sans-serif;
 
     /* taille de police */
     --size-small-title: 20px;
@@ -31,8 +34,9 @@ html {
     --margin-medium: 10px;
 
     /* padding */
-    --padding-small: 8px;
-    --padding-medium: 20px;
+    --padding-small: 4px;
+    --padding-medium: 8px;
+    --padding-large: 20px;
 
     /* border */
     --border-input-form: 1px solid #ccc;
@@ -44,6 +48,10 @@ html {
 
     /* transition color */
     --transition-color:background-color 0.3s ease-in-out;
+}
+
+body {
+    background-color: var(--white-darker);
 }
 
 
@@ -60,21 +68,21 @@ html {
 }
 
 
-/*-------------------------- IMG -------------------------*/
+/*-------------------------- MAP -------------------------*/
 
 #map { 
     height: 400px; 
 }
 
-/*------------------------- HEADER -----------------------*/
+/*================================= HEADER TEMPLATE =================================*/
 
 header {
-    background-color: var(--main-background-color);
+    background-color: var(--pink-smoothy);
+    /* rallongement du bas pour mieux intégrer la barre de navigation  */
     padding-bottom: 40px;
-    margin-bottom: auto;
 }
 
-/* MENU CONNEXION */
+/*------- MENU CONNEXION -------*/
 
 .MenuLog {
     display: flex;
@@ -83,20 +91,20 @@ header {
 }
 
 .MenuLog a {
-    padding: 20px;
     color: var(--white);
+    font-family: var(--font-lato);
+    padding: 20px;
     text-decoration: none;
 }
 
-/* IDENTITE SITE */
+/*------- IDENTITE SITE -------*/
 
 .slogan {
     display: flex;
-    /* justify-content: space-around; */
     align-items: center;
 }
 
-/* "Found My Pet" title */
+/*------- TITRE SITE -------*/
 
 .title-site {
     color: var(--white);
@@ -108,42 +116,51 @@ header {
     margin: 0 auto;
 }
 
-.title-site:hover {
-    text-decoration: underline;
-}
-
-
-/* section barre de navigation */
-
+/*------- BARRE DE NAVIGATION -------*/
 
 nav .headerList {
     justify-content: space-around;
     display: flex;
     align-items: center;
-    overflow: hidden;
 }
 
 .navLink {
-    color: var(--text_color);
-    background-color: var(--white);
+    color: var(--white);
+    font-family: var(--font-lato);
+    padding: 12px;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 12px;
-    border: 1px solid #cacaca;
-    border-radius: 20px;
+    position: relative;
 }
 
-.navLink:hover {
-    text-decoration: underline red;
-    color: brown;
+.navLink::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--white);
+    transform-origin: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+.navLink:hover::after {
+    width: 80%;
+    transform: translateX(-50%);
+    opacity: 1;
+}
 
 /*==================================== TEMPLATE ACCUEIL ====================================*/
 
 .home-title {
     text-align: center;
-    margin: var(--padding-medium);
+    margin: var(--padding-large);
+}
+
+.textIntro {
+    text-align: center;
 }
 
 .draft {
@@ -152,11 +169,11 @@ nav .headerList {
 }
 
 .annonceCard {
-    border: var(--border-input-form);
     border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     margin: 20px;
     width: 30%;
-
+    background-color: var(--white);
 }
 
 .titleCard {
@@ -235,6 +252,8 @@ form {
     border-radius: var(--border-radius-medium);
     border:var(--border-input-form);
     margin: 50px 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: var(--white);
 }
 
 /* Styles pour la liste déroulante */
@@ -489,19 +508,43 @@ button[type="submit"]:hover {
 /*========================================== FOOTER ==========================================*/
 
 footer {
-    background-color: var(--main-background-color);
-    margin-top: auto;
+    background-color: #363F48;
     padding: 20px 0;
-}
-
-.flex {
-    display: flex;
+    margin-top: 20px;
+    font-family: var(--font-lato);
 }
 
 .footerBloc {
+    display: flex;
     justify-content: space-around;
 }
 
+.footerBloc ul {
+    padding: 0;
+}
+
+.footerLink {
+    color: #7F7F7F;
+    text-transform: none;
+    font-size: 14px;
+    text-decoration: none;
+    padding: var(--padding-small);
+
+}
+
+.footerLegal {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerTitle {
+    color: var(--grey);
+    margin: var(--margin-small);
+}
+
+.footerLink:hover {
+    color: var(--grey);
+}
 
 /*-========================================= JAVASCRIPT =========================================-*/
 
