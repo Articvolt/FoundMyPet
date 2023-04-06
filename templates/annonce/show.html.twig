@@ -77,17 +77,19 @@
                 {# PROPRIETAIRE #}
                 <div class="propriétaire-descriptif">
                     <div>
-                        <h3>Propriétaire de l'annonce</h3>
-                        <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
                         <div>
-                            <p>Adresse mail : {{ annonce.adresseMail }}</p>
-                            <p>Téléphone : {{ annonce.telephone }}</p>
+                            <h3>Propriétaire de l'annonce</h3>
+                            <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
+                            <div>
+                                <p>Adresse mail : {{ annonce.adresseMail }}</p>
+                                <p>Téléphone : {{ annonce.telephone }}</p>
+                            </div>
                         </div>
-                    </div>
-            
-                    <div>
-                        <p>{{ annonce.adresse }}</p>
-                        <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                
+                        <div>
+                            <p>{{ annonce.adresse }}</p>
+                            <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                        </div>
                         <div id="map"></div>
                         <p id="texteMap">Aperçu de la carte indisponible</p>
                     </div>
@@ -96,8 +98,8 @@
         </div>
               
 
-        <div>
-            <h3>Description</h3>
+        <div class="textDescription">
+            <h3>Informations supplémentaires</h3>
             <p>{{ annonce.description }}</p>
         </div>
 
@@ -111,7 +113,7 @@
         <hr>
         {# SECTION COMMENTAIRES #}
     
-        <div>
+        <div id="commentaire">
             {% if annonce.messages|length == 0 %}
                 <h2>{{annonce.messages| length}} Commentaire</h2>
                 <p>Aucun commentaire pour le moment.</p>
@@ -121,22 +123,37 @@
                 <h2>{{annonce.messages| length}} commentaires</h2>
             {% endif %}
 
+            <table class="tableCommentaire">
+                <tbody>
                     {% for commentaire in annonce.messages %}
-                        <div>
-                            <h3>{{ commentaire.membre.pseudonyme }} ({{ commentaire.dateMessage|date('d/m/Y H:i') }})</h3>
-                            <p>
+                        <tr>
+                            <td>
+                                <div class="blocCommentaire">
+                                    <h3>{{ commentaire.membre.pseudonyme }}</h3>                                  
+                                    <p>({{ commentaire.dateMessage|date('d/m/Y H:i') }})</p>
+
+                                    {# MODIFICATION #}
+                                    {% if is_granted('ROLE_USER') and commentaire.membre == app.user %}
+                                        <a class="anchorPanel" href="{{ path('message_edit', {'id': annonce.id, 'idMessage': commentaire.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square edit"></i>
+                                        </a>
+                                    {% endif %}
+
+                                        {# SUPPRESSION #}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a class="anchorPanel" href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">
+                                            <i class="fa-solid fa-trash trash"></i>
+                                        </a>                                
+                                    {% endif %}
+                                </div>  
+                            </td>
+                            <td class="textCommentaire">
                                 {{ commentaire.message }}
-                            </p>
-                            <div>
-                                {% if is_granted('ROLE_USER') and commentaire.membre == app.user %}
-                                    <a href="{{ path('message_edit', {'id': annonce.id, 'idMessage': commentaire.id}) }}">Modifier</a>
-                                {% endif %}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path ('message_delete', { 'id':annonce.id , 'idMessage':commentaire.id }) }}">supprimer</a>                                
-                                {% endif %}
-                            </div>  
-                        </div>
+                            </td>
+                        </tr> 
                     {% endfor %}
+                </tbody>
+            </table>
     
             {# ajout de commentaires #}
             {% if app.user %}
@@ -146,7 +163,7 @@
                             <h2>Ajouter un commentaire</h2>  
                         {% endif %}
         
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'id': 'formCommentaire'}}) }}
                     {{ form_row(form.message) }}
                     {{ form_row(form.submit) }}
                 {{ form_end(form) }}

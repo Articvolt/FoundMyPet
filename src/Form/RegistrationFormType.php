@@ -21,8 +21,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('pseudonyme', TextType::class)
+            ->add('email', EmailType::class, [
+                'label' => "Adresse mail :"
+            ])
+            ->add('pseudonyme', TextType::class, [
+                'label' => "Pseudonyme :"
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "conditions d'utilisation",
                 'mapped' => false,
@@ -39,8 +43,8 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Les mots de passes doivent être identiques !',
                 'options' => ['attr' => ['class'=>'password_field']],
                 'required' => true,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répetez le mot de passe'],
+                'first_options' => ['label' => 'Mot de passe :'],
+                'second_options' => ['label' => 'Répetez le mot de passe :'],
                 'constraints' => [
                     // règle pour renforcer le mot de passe
                     new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',

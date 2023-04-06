@@ -5,6 +5,7 @@
 {% block body %}
     <h1 class="title">Recherche d'annonces</h1>
 
+    <div>
         {{ form_start(form) }}
             {{ form_row(form.espece) }}
             {{ form_row(form.sexeAnimal) }}
@@ -15,6 +16,7 @@
             {{ form_row(form.ville) }}
             {{ form_row(form.rechercher) }}
         {{ form_end(form) }}
+    </div>
 
         {% if annonces is not empty %}
             <h2>Résultats de la recherche :</h2>

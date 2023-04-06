@@ -7,19 +7,29 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>S'inscrire</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.pseudonyme) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-    <div>
-        <a href="#">{{ form_label(registrationForm.agreeTerms) }}</a>
-        {{ form_widget(registrationForm.agreeTerms) }}
+    <div class="blocLogin">
+        <h2>S'inscrire</h2>
+    
+        {{ form_start(registrationForm) }}
+            <div class="formColumn">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'inputLogin'}}) }}
+            </div>
+            <div class="formColumn">
+                {{ form_label(registrationForm.pseudonyme) }}
+                {{ form_widget(registrationForm.pseudonyme, {'attr': {'class': 'inputLogin'}}) }}
+            </div>
+            <div class="formColumn">
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+            </div>
+        <div>
+            <a href="#">{{ form_label(registrationForm.agreeTerms) }}</a>
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+    
+        <button type="submit" class="btn">s'enregistrer</button>
+        {{ form_end(registrationForm) }}
     </div>
-
-    <button type="submit" class="btn">s'enregistrer</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}
