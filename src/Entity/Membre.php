@@ -202,4 +202,18 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function delete(): void
+    {
+        // Anonymiser les messages associés
+        foreach ($this->messages as $message) {
+            if ($message->getMembre() !== null) {
+                // Mettre à jour le pseudonyme à "Anonyme"
+                $message->getMembre()->setPseudonyme('Anonyme');
+            }
+
+            // Supprimer la référence au membre
+            $message->setMembre(null);
+        }
+    }
 }

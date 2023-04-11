@@ -29,7 +29,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ path('admin_delete', {'id': membre.id, '_token': csrf_token('delete' ~ membre.id) }) }}">Delete</a>
+                            <a href="{{ path('admin_delete', {'id': membre.id}) }}">supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

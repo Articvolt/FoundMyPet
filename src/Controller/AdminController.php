@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Membre;
 use App\Repository\MembreRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,13 +27,20 @@ class AdminController extends AbstractController
 
     #[Route('/admin/delete/{id}', name: 'admin_delete')]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(Membre $membre, MembreRepository $membreRepository, Request $request): Response
+    public function delete(Membre $membre, ManagerRegistry $doctrine, Request $request): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$membre->getId(), $request->request->get('_token'))) {
-            $this->container->get('security.token_storage')->setToken(null);
-            
-            $membreRepository->remove($membre, true);
-        }
+
+        // dd($request);
+        // if ($this->isCsrfTokenValid('delete'.$membre->getId(), $request->request->get('_token'))) {
+            // $this->container->get('security.token_storage')->setToken(null);
+
+            // supprimer le membre ciblé de la base de données
+            $entityManager = $doctrine->getManager();
+            $membre->delete();
+            $entityManager->remove($membre);
+            $entityManager->flush();
+            $this->addFlash('success', 'Utilisateur supprimé avec succès !');
+        // }
         return $this->redirectToRoute('app_admin');
     }
 

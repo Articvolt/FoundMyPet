@@ -129,7 +129,7 @@
                         <tr>
                             <td>
                                 <div class="blocCommentaire">
-                                    <h3>{{ commentaire.membre.pseudonyme }}</h3>                                  
+                                    <h3>{{ commentaire.membre.pseudonyme|default('Anonyme') }}</h3>                                  
                                     <p>({{ commentaire.dateMessage|date('d/m/Y H:i') }})</p>
 
                                     {# MODIFICATION #}
