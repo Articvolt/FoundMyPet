@@ -30,7 +30,12 @@
                         {% endfor %}
                         <div>
                             <h2> 
-                                {{ annonce.nomAnimal|upper }}   
+                                {{ annonce.nomAnimal|upper }} 
+                                {% if annonce.sexeAnimal == 'Mâle' %}
+                                    <i class="fa-solid fa-mars male"></i>                
+                                {% elseif annonce.sexeAnimal == 'Femelle' %}
+                                    <i class="fa-solid fa-venus femelle"></i>                
+                                {% endif %}   
                             </h2>
                                 {# statut de l'annonce #}
                                 {% if annonce.category == 'perdu' %}
@@ -72,7 +77,6 @@
                 </div>
                 <div>
                     <h3>informations complémentaires</h3>
-                    <p>Sexe : {{ annonce.sexeAnimal }}</p>
                     <p>Âge : {{ annonce.ageAnimal }} ans</p>
                     <p>Puce : {{ annonce.puce }}</p>
                     <p>Tatoué : {{ annonce.tatoue }}</p>
