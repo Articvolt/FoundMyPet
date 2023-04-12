@@ -22,14 +22,16 @@
             <div class="formColumn">
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
-                }) }}
+                }) }} 
+                {# {{ form_label(registrationForm.plainPassword) }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'inputLogin'}}) }}           #}
             </div>
         <div>
             <a href="#">{{ form_label(registrationForm.agreeTerms) }}</a>
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
     
-        <button type="submit" class="btn">s'enregistrer</button>
+        <button type="submit" class="btnLogin">s'enregistrer</button>
         {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

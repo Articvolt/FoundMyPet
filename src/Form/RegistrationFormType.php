@@ -22,15 +22,17 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => "Adresse mail :"
+                'label' => "Adresse mail",
+                'label_attr' => ['class' => 'labelLogin'],
             ])
             ->add('pseudonyme', TextType::class, [
-                'label' => "Pseudonyme :"
+                'label' => "Pseudonyme",
+                'label_attr' => ['class' => 'labelLogin'],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "conditions d'utilisation",
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez accepter les termes d'utilisations",
@@ -41,10 +43,14 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passes doivent être identiques !',
-                'options' => ['attr' => ['class'=>'password_field']],
+                'options' => ['attr' => ['class'=>'passwordLogin']],
                 'required' => true,
-                'first_options' => ['label' => 'Mot de passe :'],
-                'second_options' => ['label' => 'Répetez le mot de passe :'],
+                'first_options' => ['label' => 'Mot de passe',
+                    'label_attr' => ['class' => 'labelLogin']],
+                    'row_attr' => ['class' => 'passBlocLogin'],
+                'second_options' => ['label' => 'Répetez le mot de passe', 
+                    'label_attr' => ['class' => 'labelLogin']],
+                    'row_attr' => ['class' => 'passBlocLogin'],
                 'constraints' => [
                     // règle pour renforcer le mot de passe
                     new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
