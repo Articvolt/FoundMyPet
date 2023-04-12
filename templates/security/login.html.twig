@@ -14,21 +14,22 @@
             Vous êtes connécté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
+        
         <h2>Connexion</h2>
 
         <div class="formColumn">
-            <label for="inputEmail">Adresse mail :</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <label class="labelLogin" for="inputEmail">Adresse mail :</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="inputLogin" autocomplete="email" required autofocus>
         </div>
         <div class="formColumn">
-            <label for="inputPassword">Mot de passe :</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <label class="labelLogin" for="inputPassword">Mot de passe :</label>
+            <input type="password" name="password" id="inputPassword" class="inputLogin" autocomplete="current-password" required>
         </div>
         
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         
         <div>
-            <a href="{{ path ('app_forgot_password_request') }}">mot de passe oublié ?</a>
+            <a class="" href="{{ path ('app_forgot_password_request') }}">mot de passe oublié ?</a>
         </div>
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -41,7 +42,7 @@
             </div>
         #}
             
-        <button class="btn btn-lg btn-primary" type="submit">Valider</button>
+        <button class="btnLogin" type="submit">Valider</button>
     </form>
 </div>
 
