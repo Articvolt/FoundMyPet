@@ -3,23 +3,49 @@
 {% block title %}Rechercher une annonce{% endblock %}
 
 {% block body %}
-    <h1 class="title">Recherche d'annonces</h1>
 
-    <div>
+<div class="filterBloc">
+        <h1 class="filterTitle">Recherche d'annonces</h1>
+
         {{ form_start(form) }}
-            {{ form_row(form.espece) }}
-            {{ form_row(form.sexeAnimal) }}
-            {{ form_row(form.nomAnimal) }}
-            {{ form_row(form.puce) }}
-            {{ form_row(form.tatoue) }}
-            {{ form_row(form.category) }}
-            {{ form_row(form.ville) }}
-            {{ form_row(form.rechercher) }}
+            <div class="filterList">
+                <div class="formColumn">
+                    {{ form_label(form.espece) }}
+                    {{ form_widget(form.espece) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.sexeAnimal) }}
+                    {{ form_widget(form.sexeAnimal) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.nomAnimal) }}
+                    {{ form_widget(form.nomAnimal) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.puce) }}
+                    {{ form_widget(form.puce) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.tatoue) }}
+                    {{ form_widget(form.tatoue) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                </div>
+                <div class="formColumn">
+                    {{ form_label(form.ville) }}
+                    {{ form_widget(form.ville) }}
+                </div>
+            </div>
+            <div>
+                {{ form_row(form.rechercher) }}
+            </div>
         {{ form_end(form) }}
     </div>
 
         {% if annonces is not empty %}
-            <h2>Résultats de la recherche :</h2>
+            <h2 class="filterResultTitle">Résultats de la recherche :</h2>
 
                <div class="draft">
                     {% for annonce in annonces %}

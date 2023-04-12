@@ -8,7 +8,7 @@
     {% endfor %}
 
     <div class="blocLogin">
-        <h2>S'inscrire</h2>
+        <h2>Inscription</h2>
     
         {{ form_start(registrationForm) }}
             <div class="formColumn">
@@ -27,7 +27,9 @@
                 {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'inputLogin'}}) }}           #}
             </div>
         <div>
-            <a href="#">{{ form_label(registrationForm.agreeTerms) }}</a>
+            <a class="linkLogin" href="{{ path('app_CGU') }}">
+                conditions d'utilisation
+            </a>
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
     

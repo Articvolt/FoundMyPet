@@ -65,7 +65,7 @@ class RechercheController extends AbstractController
                     'ne sais pas' => 'ne sais pas',
                 ],
                 'required' => false,
-                'label' => 'pucé ?',
+                'label' => 'tatoué ?',
             ])
             ->add('ville', TextType::class, [
                 'required' => false,
@@ -75,7 +75,9 @@ class RechercheController extends AbstractController
                 'required' => false,
                 'label' => "nom de l'animal",
             ])
-            ->add('rechercher', SubmitType::class)
+            ->add('rechercher', SubmitType::class, [
+                'row_attr' => ['class' => 'filterBtn']
+            ])
             ->getForm();
 
         $form->handleRequest($request);

@@ -18,78 +18,80 @@
     <div class="draft">
         {% for annonce in annonces %}
 
-        <div class="annonceCard">
-            <div>
-                <div class="titleCard">
-                    {# liste des images #}
-                    {% for image in annonce.images %}
-                    <div>
-                        <img class="imgCard" src="{{ asset ('/uploads/' ~ image.name) }}" alt="Image">
-                    </div>
-                    {% endfor %}
-                    <div>
-                        <h2> 
-                            <a href="{{ path ('annonce_show', {'id': annonce.id})}}">{{ annonce.nomAnimal|upper }}</a>   
-                        </h2>
-                            {# statut de l'annonce #}
-                            {% if annonce.category == 'perdu' %}
-                                <p class="iconCard">
-                                    <i class="fa-solid fa-circle" style="color:red;"></i>
-                                    Perdu
-                                </p>
-                            {% elseif annonce.category == 'trouvé' %}
-                                <p class="iconCard">
-                                    <i class="fa-solid fa-circle" style="color:green;"></i>
-                                    Trouvé
-                                </p>
-                            {% endif %}
-                    </div>
-                </div>
-
-                {# nom de l'espece #}
-                {% if annonce.espece == 'chat' %}
-                    <p>
-                        <i class="fa-solid fa-cat"></i>
-                        chat
-                    </p>
-                {% elseif annonce.espece == 'chien' %}
-                    <p>
-                        <i class="fa-solid fa-dog"></i>
-                        chien
-                    </p>
-                {% endif %}
-            </div>
-
-            <div>
-                <h3>Propriétaire de l'annonce</h3>
-                <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
-            </div>
-            <div>
-                <h3>Adresse</h3>
-                <p>{{ annonce.adresse }}</p>
-                <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
-            </div>
-            <div>
-                <h3>informations complémentaires</h3>
-                <p>Sexe : {{ annonce.sexeAnimal }}</p>
-                <p>Âge : {{ annonce.ageAnimal }} ans</p>
-                <p>Puce : {{ annonce.puce }}</p>
-                <p>Tatoué : {{ annonce.tatoue }}</p>
-    
-            </div>
-            <div>
-                <h3>description visuel</h3>
-                <p>Taille de poil : {{ annonce.taillePoil }}</p>
-                <p>Couleur de poil : {{ annonce.couleurPoil|join(', ') }}</p>
-                <p>Dessin de poil : {{ annonce.dessinPoil }}</p>
-            </div>
-
-            {% if is_granted('ROLE_ADMIN') %}
+        <a class="annonceCardLink" href="{{ path ('annonce_show', {'id': annonce.id})}}">
+            <div class="annonceCard">
                 <div>
-                    <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
+                    <div class="titleCard">
+                        {# liste des images #}
+                        {% for image in annonce.images %}
+                        <div>
+                            <img class="imgCard" src="{{ asset ('/uploads/' ~ image.name) }}" alt="Image">
+                        </div>
+                        {% endfor %}
+                        <div>
+                            <h2> 
+                                {{ annonce.nomAnimal|upper }}   
+                            </h2>
+                                {# statut de l'annonce #}
+                                {% if annonce.category == 'perdu' %}
+                                    <p class="iconCard">
+                                        <i class="fa-solid fa-circle" style="color:red;"></i>
+                                        Perdu
+                                    </p>
+                                {% elseif annonce.category == 'trouvé' %}
+                                    <p class="iconCard">
+                                        <i class="fa-solid fa-circle" style="color:green;"></i>
+                                        Trouvé
+                                    </p>
+                                {% endif %}
+                        </div>
+                    </div>
+    
+                    {# nom de l'espece #}
+                    {% if annonce.espece == 'chat' %}
+                        <p>
+                            <i class="fa-solid fa-cat"></i>
+                            chat
+                        </p>
+                    {% elseif annonce.espece == 'chien' %}
+                        <p>
+                            <i class="fa-solid fa-dog"></i>
+                            chien
+                        </p>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
+    
+                <div>
+                    <h3>Propriétaire de l'annonce</h3>
+                    <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
+                </div>
+                <div>
+                    <h3>Adresse</h3>
+                    <p>{{ annonce.adresse }}</p>
+                    <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                </div>
+                <div>
+                    <h3>informations complémentaires</h3>
+                    <p>Sexe : {{ annonce.sexeAnimal }}</p>
+                    <p>Âge : {{ annonce.ageAnimal }} ans</p>
+                    <p>Puce : {{ annonce.puce }}</p>
+                    <p>Tatoué : {{ annonce.tatoue }}</p>
+        
+                </div>
+                <div>
+                    <h3>description visuel</h3>
+                    <p>Taille de poil : {{ annonce.taillePoil }}</p>
+                    <p>Couleur de poil : {{ annonce.couleurPoil|join(', ') }}</p>
+                    <p>Dessin de poil : {{ annonce.dessinPoil }}</p>
+                </div>
+    
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
+                    </div>
+                {% endif %}
+            </div>  
+        </a>
         {% endfor %}
     </div>
     <div>

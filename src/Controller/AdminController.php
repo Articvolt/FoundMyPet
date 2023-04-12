@@ -44,4 +44,10 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin');
     }
 
+    #[Route('/conditions-générales-d-utilisation', name: 'app_CGU')]
+    public function CGU(): Response
+    {
+        return $this->render('home/CGU.html.twig', []);
+    }
+
 }

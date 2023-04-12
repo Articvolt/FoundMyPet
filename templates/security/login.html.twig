@@ -14,7 +14,7 @@
             Vous êtes connécté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
-        
+
         <h2>Connexion</h2>
 
         <div class="formColumn">
@@ -29,7 +29,7 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         
         <div>
-            <a class="" href="{{ path ('app_forgot_password_request') }}">mot de passe oublié ?</a>
+            <a class="linkLogin" href="{{ path ('app_forgot_password_request') }}">mot de passe oublié ?</a>
         </div>
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
