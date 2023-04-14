@@ -149,6 +149,8 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     public function ajoutEditAnnonce(ManagerRegistry $doctrine, Annonce $annonce = null, Request $request): Response
     {
         $annonces = $doctrine->getRepository(Annonce::class)->findAll();
+        $connect = $this->getUser();
+        $user = $annonce->getMembre();
 
         if (!$annonce) {
             $annonce = new Annonce();
@@ -186,6 +188,8 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
 
             // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
             $entityManager = $doctrine->getManager();
+
+            if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
             // récupère les données du formulaire
             $annonce = $form->getData();
             // ajoute la date actuelle à la donnée "dateCreation"
@@ -200,6 +204,10 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
 
             // après validation retourne sur la page d'accueil
             return $this->redirectToRoute('app_home');
+            } else {
+                throw new AccessDeniedException();
+                return $this->redirectToRoute('app_home');
+            }
         }
 
         
