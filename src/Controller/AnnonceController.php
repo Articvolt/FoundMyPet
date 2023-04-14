@@ -208,6 +208,7 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
                 throw new AccessDeniedException();
                 return $this->redirectToRoute('app_home');
             }
+            return $this->redirectToRoute('app_home');
         }
 
         
