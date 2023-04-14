@@ -49,84 +49,66 @@
 
                <div class="draft">
                     {% for annonce in annonces %}
-                        <div class="annonceCard">
+                        {# carte #}
+                            <div class="annonceCard">
+                                {# lien au détail #}
+                            <a class="annonceCardLink" href="{{ path ('annonce_show', {'id': annonce.id})}}">
+                                <div>
+                                    {# statut de l'annonce #}
+                                            {% if annonce.category == 'perdu' %}
+                                    <p class="iconCard" style="background-color:#8B2635 ">
+                                        Perdu
+                                    </p>
+                                    {% elseif annonce.category == 'trouvé' %}
+                                    <p class="iconCard" style="background-color:green ">
+                                        Trouvé
+                                    </p>
+                                    {% endif %}
+                                </div>
 
-                            <div>
-                                <div class="titleCard">
+                                <h2>
+                                    {# nom de l'espece #}
+                                    {% if annonce.espece == 'chat' %}
+                                        <i class="fa-solid fa-cat"></i>
+                                    {% elseif annonce.espece == 'chien' %}
+                                        <i class="fa-solid fa-dog"></i>
+                                    {% endif %}
+
+                                    {{ annonce.nomAnimal|upper }} 
+
+                                    {% if annonce.sexeAnimal == 'Mâle' %}
+                                        <i class="fa-solid fa-mars male"></i>
+                                    {% elseif annonce.sexeAnimal == 'Femelle' %}
+                                        <i class="fa-solid fa-venus femelle"></i>
+                                    {% endif %}
+                                </h2>
+
+                                <div class="descriptionCard">
                                     {# liste des images #}
                                     {% for image in annonce.images %}
-                                    <div>
-                                        <img class="imgCard" src="{{ asset ('/uploads/' ~ image.name) }}" alt="Image">
-                                    </div>
+                                        <div>
+                                            <img class="imgCard" src="{{ asset ('/uploads/' ~ image.name) }}" alt="Image">
+                                        </div>
                                     {% endfor %}
                                     <div>
-                                        <h2> 
-                                            <a href="{{ path ('annonce_show', {'id': annonce.id})}}">{{ annonce.nomAnimal|upper }}</a>   
-                                        </h2>
-                                            {# statut de l'annonce #}
-                                            {% if annonce.category == 'perdu' %}
-                                                <p class="iconCard">
-                                                    <i class="fa-solid fa-circle" style="color:red;"></i>
-                                                    Perdu
-                                                </p>
-                                            {% elseif annonce.category == 'trouvé' %}
-                                                <p class="iconCard">
-                                                    <i class="fa-solid fa-circle" style="color:green;"></i>
-                                                    Trouvé
-                                                </p>
-                                            {% endif %}
+                                        <p> {{ annonce.ville|upper }}</p>
+                                        <br>
+                                        {% if annonce.ageAnimal == '1' %}
+                                            <p>Âge : {{ annonce.ageAnimal }} an</p>
+                                        {% else %}
+                                            <p>Âge : {{ annonce.ageAnimal }} ans</p>
+                                        {% endif %}
+                                        <br>
+                                        <p>Posté le: {{ annonce.dateCreation|date("d/m/Y") }}</p>
                                     </div>
                                 </div>
-
-                                {# nom de l'espece #}
-                                {% if annonce.espece == 'chat' %}
-                                    <p>
-                                        <i class="fa-solid fa-cat"></i>
-                                        chat
-                                    </p>
-                                {% elseif annonce.espece == 'chien' %}
-                                    <p>
-                                        <i class="fa-solid fa-dog"></i>
-                                        chien
-                                    </p>
-                                {% endif %}
-                            </div>
-
-                            <div>
-                                <h3>Propriétaire de l'annonce</h3>
-                                <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
-                            </div>
-                            <div>
-                                <h3>Adresse</h3>
-                                <p>{{ annonce.adresse }}</p>
-                                <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
-                            </div>
-                            <div>
-                                <h3>informations complémentaires</h3>
-                                <p>Sexe : {{ annonce.sexeAnimal }}</p>
-                                <p>Âge : {{ annonce.ageAnimal }} ans</p>
-                                <p>Puce : {{ annonce.puce }}</p>
-                                <p>Tatoué : {{ annonce.tatoue }}</p>
-                    
-                            </div>
-                            <div>
-                                <h3>description visuel</h3>
-                                <p>Taille de poil : {{ annonce.taillePoil }}</p>
-                                <p>Couleur de poil : {{ annonce.couleurPoil|join(', ') }}</p>
-                                <p>Dessin de poil : {{ annonce.dessinPoil }}</p>
-                            </div>
-                            <div>
-                                <h3>Description</h3>
-                                <p>{{ annonce.description }}</p>
-                            </div>
+                            </a>
 
                             {% if is_granted('ROLE_ADMIN') %}
-                                <div>
-                                    <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
-                                    <a href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
+                                <div class="divDelete">
+                                    <a class="btnDelete" href="{{ path('annonce_delete', {'id':annonce.id}) }}">SUPPRIMER</a>
                                 </div>
                             {% endif %}
-
                         </div>
                     {% endfor %}
 
@@ -136,6 +118,6 @@
                 </div>
 
         {% else %}
-            <p>il n'y a pas de resultat</p>
+        <h2 class="filterResultTitle">il n'y a pas de resultat</h2>
         {% endif %}
 {% endblock %}

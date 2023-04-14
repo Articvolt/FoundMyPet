@@ -9,18 +9,19 @@ use App\Form\AnnonceType;
 use App\Form\CommentaireType;
 use App\HttpClient\NominatimHttpClient;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AnnonceController extends AbstractController
 {
 
-    #[Route("/annonce/{id}", name: "annonce_show")]
+    #[Route("/annonce/add/{id}", name: "annonce_show")]
     #[Route("/annonce/{id}/editMessage/{idMessage}", name: "message_edit")]
     #[ParamConverter('annonce', options: ['mapping' => ['id' => 'id']])]
     #[ParamConverter('message', options: ['mapping' => ['idMessage' => 'id']])] 
@@ -81,10 +82,19 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
 
         $entityManager = $doctrine->getManager();
 
+        $connect = $this->getUser();
+        $user = $message->getMembre();
+        if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
+
         $entityManager->remove($message);
         $entityManager->flush();
 
         return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+
+        } else {
+            throw new AccessDeniedException();
+            return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+        }
     }
 
     
@@ -98,26 +108,34 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     {
         $entityManager = $doctrine->getManager();
 
-        // Récupérer les images associées à l'annonce
+        $connect = $this->getUser();
+        $user = $annonce->getMembre();
+        if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
+            // Récupérer les images associées à l'annonce
 
-        $images = $annonce->getImages();
+            $images = $annonce->getImages();
 
-        // Supprimer chaque fichier correspondant dans le dossier "upload"
-        foreach ($images as $image) {
+            // Supprimer chaque fichier correspondant dans le dossier "upload"
+            foreach ($images as $image) {
 
-            $filePath = $this->getParameter('images_directory') . '/' . $image->getName();
-            if (file_exists($filePath)) {
-                unlink($filePath);
+                $filePath = $this->getParameter('images_directory') . '/' . $image->getName();
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
-        }
 
-        $entityManager->remove($annonce);
-        $entityManager->flush();
+            $entityManager->remove($annonce);
+            $entityManager->flush();
 
-        // redirection de la route en fonction de la page d'origine
-        if (Request::create($request->headers->get('referer'))->getPathInfo() == $this->generateUrl('app_home')) {
-            return $this->redirectToRoute('app_home');
+            // redirection de la route en fonction de la page d'origine
+            if (Request::create($request->headers->get('referer'))->getPathInfo() == $this->generateUrl('app_home')) {
+                return $this->redirectToRoute('app_home');
+            } else {
+            return $this->redirectToRoute('app_profil');
+            }
         } else {
+            // message d'erreur en brut
+            throw new AccessDeniedException();
             return $this->redirectToRoute('app_profil');
         }
     }
@@ -125,10 +143,10 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     //================================= FONCTION D'AFFICHAGE ET D'EDITION DE L'ANNONCE ============================
 
 
-    #[Route("/annonce", name: "app_annonce")]
-    #[Route("/annonce/{id}/edit", name: "annonce_edit")]
+    #[Route("/annonce/add", name: "app_annonce")]
+    #[Route("/annonce/edit/{id}", name: "annonce_edit")]
 
-    public function index(ManagerRegistry $doctrine, Annonce $annonce = null, Request $request): Response
+    public function ajoutEditAnnonce(ManagerRegistry $doctrine, Annonce $annonce = null, Request $request): Response
     {
         $annonces = $doctrine->getRepository(Annonce::class)->findAll();
 

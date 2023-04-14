@@ -74,7 +74,7 @@ body {
     height: 150px;
     padding: 5px;
     border-radius: 90%;
-    background-color: white;
+    background-color: var(--white);
     margin: 10px 30px;
     flex: none;
 }
@@ -271,7 +271,11 @@ nav .headerList {
 .annonceCardLink {
     text-decoration: none;
     color: var(--black);
-    width: 30%;
+}
+
+.annonceCardLink h2 {
+    text-align: center;
+    margin: 10px auto;
 }
 
 .annonceCard {
@@ -280,12 +284,18 @@ nav .headerList {
     box-shadow: var(--shadow-bloc);
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
+    width: 30%;
     margin: 10px;
     padding:10px;
 }
 
 .annonceCard:hover {
     transform: scale(1.02);  
+}
+
+.iconCard {
+    text-align: center;
+    color: var(--white);
 }
 
 .titleCard {
@@ -307,11 +317,37 @@ nav .headerList {
     object-fit: cover;
 }
 
-.annonceCard h3 {
-    text-align:end;
-    margin: 10px;
+.descriptionCard {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: justify;
 }
 
+/* section suppression */
+.divDelete {
+    text-align: center;
+    margin: 20px;
+}
+
+.btnDelete {
+    border-radius: var(--border-radius-small);
+    font-size: var(--size-small-title);
+    box-shadow: var(--shadow-form);
+    transition: var(--transition-color-background-color);
+    background-color: var(--white);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto;
+    padding: 10px 20px;
+    color: var(--black);
+}
+
+.btnDelete:hover {
+    background-color: var(--pink-smoothy);
+    color: var(--white);
+}
 
 /*==================================== TEMPLATE ANNONCE ====================================*/
 
@@ -423,7 +459,7 @@ textarea {
 }
 
 .filterResultTitle {
-    margin: 40px 0;
+    margin: 40px 10px;
 }
 
 /*========================================== TEMPLATE PROFIL ==========================================*/
