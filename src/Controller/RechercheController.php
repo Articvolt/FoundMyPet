@@ -58,6 +58,7 @@ class RechercheController extends AbstractController
                 'required' => false,
                 'label' => 'pucé ?',
             ])
+
             ->add('tatoue', ChoiceType::class, [
                 'choices' => [
                     'oui' => 'oui',

@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Annonce;
-use App\Model\RechercheData;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;

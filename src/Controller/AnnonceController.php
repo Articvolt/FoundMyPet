@@ -143,7 +143,7 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     //================================= FONCTION D'AFFICHAGE ET D'EDITION DE L'ANNONCE ============================
 
 
-    #[Route("/annonce/add", name: "app_annonce")]
+    #[Route("/annonce", name: "app_annonce")]
     #[Route("/annonce/edit/{id}", name: "annonce_edit")]
 
     public function ajoutEditAnnonce(ManagerRegistry $doctrine, Annonce $annonce = null, Request $request): Response
