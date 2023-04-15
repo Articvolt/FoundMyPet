@@ -360,11 +360,24 @@ nav .headerList {
 
 /*==================================== TEMPLATE ANNONCE ====================================*/
 
+.formAnnonce {
+    border-radius: var(--border-radius-medium);
+    background-color: var(--white);
+    box-shadow: var(--shadow-bloc);
+    margin: 20px;
+    padding: 20px;
+}
+
 .h2Form {
     font-size: var(--size-large-title);
     padding: var(--padding-medium);
     text-align: center;
     text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.introAnnonce {
+    text-align: center;
 }
 
 .h3Form {
@@ -417,10 +430,31 @@ textarea {
     resize: vertical; /* Permet de redimensionner le champ verticalement */
 }
   
+
+/* section bouton validation */
 .submitAnnonce {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.submitAnnonce > button {
+    border-radius: var(--border-radius-small);
+    font-size: var(--size-small-title);
+    box-shadow: var(--shadow-form);
+    transition: var(--transition-color-background-color);
+    background-color: var(--white);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto;
+    padding: 10px 20px;
+    color: var(--black);
+}
+
+.submitAnnonce > button:hover {
+    background-color: var(--pink-smoothy);
+    color: var(--white);
 }
 
 
@@ -481,9 +515,10 @@ textarea {
 
 .profil-section {
     border-radius: var(--border-radius-medium);
-    border: var(--border-input-form);
-    margin: 20px;
+    background-color: var(--white);
+    box-shadow: var(--shadow-bloc);
     padding: var(--padding-small);
+    margin: 20px;
     /* largeur du bloc maximum */
     width: 100%;
     max-width: 600px;
