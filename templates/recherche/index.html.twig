@@ -38,8 +38,13 @@
                     {{ form_widget(form.ville) }}
                 </div>
             </div>
-            <div>
-                {{ form_row(form.rechercher) }}
+            <div class="formLine">
+                <div>
+                    {{ form_row(form.rechercher) }}
+                </div>
+                <div>
+                    {{ form_row(form.reset) }}
+                </div> 
             </div>
         {{ form_end(form) }}
     </div>

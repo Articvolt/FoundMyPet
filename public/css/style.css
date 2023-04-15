@@ -191,6 +191,15 @@ nav .headerList {
     margin: var(--margin-medium) auto;
 }
 
+.formLine {
+    display: flex;
+    justify-content: center;
+}
+
+.formLine > div {
+    margin: 0 10px;
+}
+
 .formColumn {
     display: flex;
     flex-direction: column;

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,6 +80,11 @@ class RechercheController extends AbstractController
             ->add('rechercher', SubmitType::class, [
                 'row_attr' => ['class' => 'filterBtn']
             ])
+            ->add('reset', ResetType::class, [
+                'label' => 'Réinitialiser',
+                'row_attr' => ['class' => 'filterBtn']
+            ])
+
             ->getForm();
 
         $form->handleRequest($request);

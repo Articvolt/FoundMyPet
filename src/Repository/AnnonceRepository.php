@@ -65,4 +65,50 @@ class AnnonceRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+// public function rechercherAnnonces($espece, $tatoue, $puce, $sexeAnimal, $category, $ville, $nomAnimal)
+// {
+//     $queryBuilder = $this->createQueryBuilder('a')
+//         ->innerJoin('a.category', 'c')
+//         ->andWhere('c.nom = :category')
+//         ->setParameter('category', $category);
+
+//         if (!empty($espece)) {
+//             $queryBuilder
+//                 ->andWhere('a.espece = :espece')
+//                 ->setParameter('espece', $espece->getEspece());
+//         }
+        
+//         if (!empty($tatoue)) {
+//             $queryBuilder
+//                 ->andWhere('a.tatoue = :tatoue')
+//                 ->setParameter('tatoue', $tatoue->getTatoue());
+//         }
+        
+//         if (!empty($puce)) {
+//             $queryBuilder
+//                 ->andWhere('a.puce = :puce')
+//                 ->setParameter('puce', $puce->getPuce());
+//         }
+        
+//         if (!empty($sexeAnimal)) {
+//             $queryBuilder
+//                 ->andWhere('a.sexeAnimal = :sexeAnimal')
+//                 ->setParameter('sexeAnimal', $sexeAnimal->getSexeAnimal());
+//         }
+        
+//         if (!empty($ville)) {
+//             $queryBuilder
+//                 ->andWhere('a.ville = :ville')
+//                 ->setParameter('ville', $ville->getVille());
+//         }
+        
+//         if (!empty($nomAnimal)) {
+//             $queryBuilder
+//                 ->andWhere('a.nomAnimal LIKE :nomAnimal')
+//                 ->setParameter('nomAnimal', '%'.$nomAnimal.'%');
+//         }
+
+//         return $queryBuilder->getQuery()->getResult();
+// }
 }
