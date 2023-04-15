@@ -6,6 +6,17 @@
 
     <div class="descriptif-annonce">
 
+        {# statut de l'annonce #}
+        <div class="statut-descriptif">
+            {# statut de l'annonce #}
+            {% if annonce.category == 'perdu' %}
+                <p class="red-statut">PERDU</p>
+            {% elseif annonce.category == 'trouvé' %}
+                <p class="green-statut">TROUVE</p>
+            {% endif %}
+        </div>
+
+        {# image + descriptif #}
         <div class="header-description">
 
             {# liste des images #}
@@ -16,15 +27,6 @@
             {% endfor %}
 
             <div class="right-description">
-                <div class="statut-descriptif">
-                    {# statut de l'annonce #}
-                    {% if annonce.category == 'perdu' %}
-                        <p class="red-statut">PERDU</p>
-                    {% elseif annonce.category == 'trouvé' %}
-                        <p class="green-statut">TROUVE</p>
-                    {% endif %}
-                </div>
-
                 <div class="animal-descriptif">
                     <h2>
                         {{ annonce.nomAnimal|upper }}
@@ -53,10 +55,7 @@
                                 <td>{{ annonce.tatoue }}</td>
                             </tr>
                         </tbody>
-                    </table>
-    
-                    {# DESCRIPTIF VISUELLE #}
-                    <table class="table-descriptif">
+                        {# DESCRIPTIF VISUELLE #}
                         <thead>
                             <tr>
                                 <th>Taille de poil</th>
@@ -73,40 +72,50 @@
                         </tbody>
                     </table>
                 </div>
-
-                {# PROPRIETAIRE #}
-                <div class="propriétaire-descriptif">
-                    <div>
-                        <div>
-                            <h3>Propriétaire de l'annonce</h3>
-                            <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
-                            <div>
-                                <p>Adresse mail : {{ annonce.adresseMail }}</p>
-                                <p>Téléphone : {{ annonce.telephone }}</p>
-                            </div>
-                        </div>
-                
-                        <div>
-                            <p>{{ annonce.adresse }}</p>
-                            <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
-                        </div>
-                        <div id="map"></div>
-                        <p id="texteMap">Aperçu de la carte indisponible</p>
-                    </div>
-                </div>
             </div>
         </div>
-              
 
+        <div>
+            <h2>QUI CONTACTER ?</h2>
+        </div>
+             
+        {#  propriétaire et carte #}
+        <div class="proprietaireDescription">
+            {# PROPRIETAIRE #}
+            <div class="proprietaireDescriptif">
+                <h3>Auteur de l'annonce</h3>
+                <div>
+                    <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
+                    <div>
+                        <p>Adresse mail : {{ annonce.adresseMail }}</p>
+                        <p>Téléphone : {{ annonce.telephone }}</p>
+                    </div>
+                </div>
+        
+                <div>
+                    <p>{{ annonce.adresse }}</p>
+                    <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                </div>
+            </div>
+            <div>
+
+                <h3>coordonnées de l'annonce</h3>
+                <div id="map"></div>
+                <p id="texteMap">Aperçu de la carte indisponible</p>
+            </div>
+        </div>
+
+        {# texte descriptif de l'animal #}
         <div class="textDescription">
             <h3>Informations supplémentaires</h3>
             <p>{{ annonce.description }}</p>
         </div>
 
+        {# ROLE ADMINISTRATEUR & USER #}
         {% if is_granted('ROLE_ADMIN') %}
-            <div>
-                <a href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
-                <a href="{{ path('annonce_delete', {'id':annonce.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce ?')">SUPPRIMER</a>
+            <div class="divDelete">
+                <a class="btnDelete" href="{{ path('annonce_edit', {'id':annonce.id}) }}">EDITER</a>
+                <a class="btnDelete" href="{{ path('annonce_delete', {'id':annonce.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce ?')">SUPPRIMER</a>
             </div>
         {% endif %}
         

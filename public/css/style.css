@@ -15,7 +15,9 @@
     --black: #000000;
     --form-background-color-black:#333;
     --yellow: #FFFF00;
+    --yellow-smooth: #F2A65A;
     --red: #FF0000;
+    --red-purple: #8B2635;
     --green: #00FF00;
     --blue: #0000FF;
     --white-darker: #f3f3f8;
@@ -539,13 +541,15 @@ textarea {
 }
 
 .edit {
-    color: var(--yellow);
+    color: var(--yellow-smooth);
     text-shadow: 0 0 3px #000;
+    font-size: 20px;
 }
 
 .trash {
-    color: var(--red);
+    color: var(--red-purple);
     text-shadow: 0 0 3px #000;
+    font-size: 20px;
 }
 
 .male {
@@ -563,25 +567,34 @@ textarea {
     justify-content: space-between;
 }
 
-.profil-option a {
-    padding: 5px;
+/* options de modifications profil */
+.optionProfil {
     border: var(--border-input-form);
     border-radius: var(--border-radius-medium);
-    background-color: blue;
+    background-color: var(--white);
+    transition: var(--transition-color-background-color);
+    box-shadow: var(--shadow-bloc);
+    padding: 5px;
+}
+
+.optionProfil:hover {
+    background-color: var(--pink-smoothy);
     color: var(--white);
 }
 
-.profil-section a:hover {
-    color: grey;
-}
-
+/* liens annonces */
 .icon-left {
     display: flex;
     justify-content:space-between;
     padding: 5px 10px;
 }
+
+.icon-left a:hover {
+    color: var(--grey-darker);
+}
 /*========================================== TEMPLATE DESCRIPTIF ==========================================*/
 
+/* conteneur annonce */
 .descriptif-annonce {
     background-color: var(--white);
     border: 1px solid #e5e5e5;
@@ -592,36 +605,39 @@ textarea {
     margin: 20px auto;
 }
 
+/* statut de l'annonce */
+.statut-descriptif {
+    text-transform: uppercase;
+    color: #f2f2f2;
+    text-align: end;
+    margin: 5px;
+    font-size: 30px;
+}
+
+.statut-descriptif p {
+    border-radius: var(--border-radius-small);
+    border: grey 1px solid;
+    padding: 10px 20px;
+}
+
+.red-statut {
+    background-color: var(--red-purple);
+}
+
+.green-statut {
+    background-color: green;
+}
+
 .header-description {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-radius: var(--border-radius-medium);
     margin: 5px;
 }
 
 .header-description>* {
     margin: 10px;
-}
-
-.statut-descriptif {
-    align-self: flex-end;
-    border-radius: var(--border-radius-small);
-    text-transform: uppercase;
-    color: #f2f2f2;
-    float: right;
-}
-
-.red-statut {
-    background-color: #ff0000;
-    padding: 10px 20px;
-    border: grey 1px solid;
-}
-
-.green-statut {
-    background-color: green;
-    padding: 10px 20px;
-    border: grey 1px solid;
 }
 
 .img-container-descriptif img {
@@ -645,13 +661,17 @@ textarea {
     justify-content: center;
 }
 
+/* tableau d'informations */
 .table-descriptif {
     margin: 20px auto;
     align-items: center;
     text-align: center;
-    border-collapse:collapse;
     border-spacing: 0 10px;
     width: 100%;
+}
+
+.table-descriptif tbody {
+    color: var(--grey-darker);
 }
 
 .table-descriptif td, .table-descriptif th {
@@ -659,12 +679,22 @@ textarea {
     padding: 10px;
 }
 
-.table-descriptif td:not(:last-child), .table-descriptif th:not(:last-child) {
+/* .table-descriptif td:not(:last-child), .table-descriptif th:not(:last-child) {
     border-right: 1px solid black;
+} */
+
+.proprietaireDescription {
+    display: flex;
+    justify-content: space-around;
 }
 
-.propriétaire-descriptif {
-    margin-top: auto;
+.proprietaireDescription >div {
+    width: 40%;
+}
+
+.proprietaireDescriptif {
+    text-align: justify;
+
 }
 
 /*-------- SECTION DESCRIPTION --------*/

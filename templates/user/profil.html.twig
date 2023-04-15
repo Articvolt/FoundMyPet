@@ -22,9 +22,9 @@
 
                     <div class="profil-option">
                         {# modification mot de passe #}
-                        <a href="{{ path ('app_reset_password_request') }}">modifier mon mot de passe</a>
+                        <a class="optionProfil" href="{{ path ('app_reset_password_request') }}">modifier mon mot de passe</a>
                         {# suppression de compte #}
-                        <a href="{{ path ('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
+                        <a class="optionProfil" href="{{ path ('app_deleteUser', {'id':app.user.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
                     </div>
                 </div>
             </div>
