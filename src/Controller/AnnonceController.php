@@ -149,8 +149,6 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     public function ajoutEditAnnonce(ManagerRegistry $doctrine, Annonce $annonce = null, Request $request): Response
     {
         $annonces = $doctrine->getRepository(Annonce::class)->findAll();
-        $connect = $this->getUser();
-        $user = $annonce->getMembre();
 
         if (!$annonce) {
             $annonce = new Annonce();
@@ -162,58 +160,59 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
 
-        // Si les données du formulaires sont sousmises et validées alors :
-        if ($form->isSubmitted() && $form->isValid()) {
+        $connect = $this->getUser();
+        $user = $annonce->getMembre();
 
-            if (!$isEdit) {
-                // récupère les images transmises
-                $image = $form->get('image')->getData();
+        if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
 
-                // génération d'un nouveau nom de fichier
-                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-                // copie du fichier dans le dossier upload
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-                // stocke l'image dans la base de données (son nom)
-                $img = new Image();
-                $img->setName($fichier);
-                if ($annonce !== null) {
-                    // Ajouter l'image à l'annonce
-                    $annonce->addImage($img);
+            // Si les données du formulaires sont sousmises et validées alors :
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                if (!$isEdit) {
+                    // récupère les images transmises
+                    $image = $form->get('image')->getData();
+
+                    // génération d'un nouveau nom de fichier
+                    $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                    // copie du fichier dans le dossier upload
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+                    // stocke l'image dans la base de données (son nom)
+                    $img = new Image();
+                    $img->setName($fichier);
+                    if ($annonce !== null) {
+                        // Ajouter l'image à l'annonce
+                        $annonce->addImage($img);
+                    }
                 }
-            }
 
 
-            // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
-            $entityManager = $doctrine->getManager();
+                // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
+                $entityManager = $doctrine->getManager();
 
-            if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
-            // récupère les données du formulaire
-            $annonce = $form->getData();
-            // ajoute la date actuelle à la donnée "dateCreation"
-            $annonce->setdateCreation(new \DateTime('now'));
-            // ajoute l'utilisateur connecté
-            $membre = $this->getUser();
-            $annonce->setMembre($membre);
-            //prepare
-            $entityManager->persist($annonce);
-            //execute
-            $entityManager->flush();
+                // récupère les données du formulaire
+                $annonce = $form->getData();
+                // ajoute la date actuelle à la donnée "dateCreation"
+                $annonce->setdateCreation(new \DateTime('now'));
+                // ajoute l'utilisateur connecté
+                $membre = $this->getUser();
+                $annonce->setMembre($membre);
+                //prepare
+                $entityManager->persist($annonce);
+                //execute
+                $entityManager->flush();
 
-            // après validation retourne sur la page d'accueil
-            return $this->redirectToRoute('app_home');
-            } else {
-                throw new AccessDeniedException();
+                // après validation retourne sur la page d'accueil
                 return $this->redirectToRoute('app_home');
             }
+        } else {
+            // message d'erreur en brut
+            throw new AccessDeniedException();
             return $this->redirectToRoute('app_home');
         }
-
         
-
-
         return $this->render('annonce/index.html.twig', [
             'formAddAnnonce' => $form->createView(),
             'annonces' => $annonces,
