@@ -20,6 +20,7 @@
     --red-purple: #8B2635;
     --green: #00FF00;
     --blue: #0000FF;
+    --blue-light: #324C89;
     --white-darker: #f3f3f8;
 
     /* font-family */
@@ -91,7 +92,7 @@ body {
 /*================================= HEADER TEMPLATE =================================*/
 
 header {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     /* rallongement du bas pour mieux intégrer la barre de navigation  */
     padding-bottom: 40px;
 }
