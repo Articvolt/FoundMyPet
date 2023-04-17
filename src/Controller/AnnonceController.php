@@ -163,11 +163,11 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
         $connect = $this->getUser();
         $user = $annonce->getMembre();
 
-        if ($connect == $user || $this->isGranted('ROLE_ADMIN') ) {
-
-            // Si les données du formulaires sont sousmises et validées alors :
+        
+        // Si les données du formulaires sont sousmises et validées alors :
             if ($form->isSubmitted() && $form->isValid()) {
-
+                
+                // si c'est l'ajout d'une annonce alors on peux ajouter une image
                 if (!$isEdit) {
                     // récupère les images transmises
                     $image = $form->get('image')->getData();
@@ -187,8 +187,7 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
                         $annonce->addImage($img);
                     }
                 }
-
-
+                              
                 // initialise une instance de la classe "entitymanager" pour intéragir avec la base de données avec l'ORM Doctrine
                 $entityManager = $doctrine->getManager();
 
@@ -199,6 +198,7 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
                 // ajoute l'utilisateur connecté
                 $membre = $this->getUser();
                 $annonce->setMembre($membre);
+      
                 //prepare
                 $entityManager->persist($annonce);
                 //execute
@@ -207,11 +207,6 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
                 // après validation retourne sur la page d'accueil
                 return $this->redirectToRoute('app_home');
             }
-        } else {
-            // message d'erreur en brut
-            throw new AccessDeniedException();
-            return $this->redirectToRoute('app_home');
-        }
         
         return $this->render('annonce/index.html.twig', [
             'formAddAnnonce' => $form->createView(),

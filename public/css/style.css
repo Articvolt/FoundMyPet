@@ -20,8 +20,10 @@
     --red-purple: #8B2635;
     --green: #00FF00;
     --blue: #0000FF;
+    --blue-smooth: #5D737E;
     --blue-light: #324C89;
-    --white-darker: #f3f3f8;
+    --blue-darker: #02111B;
+    --white-darker: #E1DEE3;
 
     /* font-family */
     --font-lato: Lato, sans-serif;
@@ -492,7 +494,8 @@ textarea {
     font-size: var(--size-small-title);
     box-shadow: var(--shadow-form);
     transition: var(--transition-color-background-color);
-    background-color: var(--white);
+    background-color: var(--blue-light);
+    color: var(--white);
     border: none;
     cursor: pointer;
     margin: 10px auto;
@@ -500,8 +503,7 @@ textarea {
 }
 
 .filterBtn > button:hover {
-    background-color: var(--pink-smoothy);
-    color: var(--white);
+    background-color: var(--blue-smooth);
 }
 
 .filterResultTitle {
