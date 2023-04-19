@@ -83,23 +83,41 @@
         <div class="proprietaireDescription">
             {# PROPRIETAIRE #}
             <div class="proprietaireDescriptif">
-                <h3>Auteur de l'annonce</h3>
                 <div>
-                    <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
-                    <div>
-                        <p>Adresse mail : {{ annonce.adresseMail }}</p>
-                        <p>Téléphone : {{ annonce.telephone }}</p>
-                    </div>
+                    <h3>Auteur de l'annonce</h3>
+                    {% if app.user %}
+                        <div>
+                            <p>{{ annonce.prenomProprietaire }} {{ annonce.nomProprietaire|upper }}</p>
+                            <br>
+                            <div>
+                                <p> 
+                                    <span class="descriptif">Adresse mail :</span>
+                                    {{ annonce.adresseMail }}
+                                </p>
+                                <p>
+                                    <span class="descriptif">Téléphone :</span>
+                                    {{ annonce.telephone }}
+                                </p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>
+                            veuillez vous
+                            <a class="linkLogin" href="{{ path ('app_login') }}">connectez</a> 
+                        </p>
+                    {% endif %}
                 </div>
-        
+                {# CONTACTER L'ANNONCEUR #}
                 <div>
-                    <p>{{ annonce.adresse }}</p>
-                    <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                    <h3>Adresse de l'annonce</h3>
+                    <div>
+                        <p>{{ annonce.adresse }}</p>
+                        <p>{{ annonce.codePostal }}, {{ annonce.ville|upper }}</p>
+                    </div>
                 </div>
             </div>
             <div>
-
-                <h3>coordonnées de l'annonce</h3>
+                <h3 class="titreMap">coordonnées de l'annonce</h3>
                 <div id="map"></div>
                 <p id="texteMap">Aperçu de la carte indisponible</p>
             </div>

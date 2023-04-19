@@ -691,13 +691,33 @@ textarea {
     justify-content: space-around;
 }
 
-.proprietaireDescription >div {
+.proprietaireDescription > div {
     width: 40%;
 }
 
 .proprietaireDescriptif {
+    display: flex;
     text-align: justify;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+.proprietaireDescriptif  h3 {
+    margin: 10px 0;
+}
+
+.proprietaireDescriptif p {
+    color: var(--grey-darker);
+}
+
+.descriptif {
+    color: var(--black);
+}
+
+/* titre de la carte */
+.titreMap {
+    text-align: center;
+    margin: 10px 0;;
 }
 
 /*-------- SECTION DESCRIPTION --------*/
@@ -711,8 +731,11 @@ textarea {
     font-size: 25px;
 }
 
-.textDescription p {
+.textDescription > p {
     padding: var(--padding-small);
+    min-height: 150px;
+    border: 1px solid var(--grey);
+    border-radius: var(--border-radius-small);
 }
 
 /*-------- SECTION COMMENTAIRE --------*/
