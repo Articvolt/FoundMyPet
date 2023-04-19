@@ -273,6 +273,10 @@ nav .headerList {
     margin: var(--padding-large);
 }
 
+.textIntro p {
+    margin: 20px;
+}
+
 .textIntro {
     text-align: center;
 }
@@ -280,6 +284,7 @@ nav .headerList {
 .draft {
     display: flex;
     flex-wrap: wrap;
+    margin: 20px 0;
 }
 
 .annonceCardLink {
@@ -765,12 +770,38 @@ textarea {
     vertical-align: top;
 }
 
+/*========================================== ADMIN ==========================================*/
+
+.panelAdmin {
+    background-color: var(--red-purple);
+    padding: 20px 0;
+}
+
+.titreAdmin {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.table {
+    border-collapse: collapse;
+    margin:  auto;
+}
+
+.table td, .table th {
+    border: 1px solid var(--black);
+    padding: 20px 10px;
+    background-color: var(--white);
+}
+
+.table td > a {
+    text-decoration: none;
+}
+
 /*========================================== FOOTER ==========================================*/
 
 footer {
     background-color: #363F48;
     padding: 20px 0;
-    margin-top: 20px;
     font-family: var(--font-lato);
     bottom: 0; 
     left: 0; 
