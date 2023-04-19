@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use Symfony\Component\Validator\Constraints\File;
+// use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -81,14 +83,18 @@ class AnnonceType extends AbstractType
                 // n'est pas lié à la base de données
                 'mapped' => false,
                 'required' => false,
-                // 'constraints' => [
-                //         'maxSize' => '1024k',
-                //         'mimeTypes' => [
-                //             'image/jpeg',
-                //             'image/jpg',
-                //             'image/png',
-                //         ],
-                //     ]
+                // ajout de contraintes lors de l'upload d'une image
+                'constraints' => [
+                    new File ([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => "l'image ne respecte pas les formats imposés ",
+                    ])
+                ]
             ])
         
             
