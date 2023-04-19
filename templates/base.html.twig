@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         {# insertion du titre de chaque templates #}
         <title>{% block title %}{% endblock %}</title>
+        {# résumé descriptif lors de la recherche #}
+        <meta name="description" content="Notre site permet de publier et rechercher des annonces de chiens ou de chats perdus ou trouvés"/>
         {# icone dans l'onglet #}
         <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/logo.svg') }}" />
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -57,7 +59,7 @@
             </div>
 
             <div class="slogan">
-                <img id="logo" src="{{ asset ('img/logo.png') }}" alt="logo">
+                <img id="logo" src="{{ asset ('img/logo.png') }}" alt="logo FoundMyPet">
                 <h1 class="title-site navLink">Found My Pet</h1>   
             </div>
 
