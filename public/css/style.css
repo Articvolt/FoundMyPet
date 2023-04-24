@@ -283,8 +283,8 @@ nav .headerList {
 
 .draft {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
     margin: 20px 0;
 }
 
@@ -343,7 +343,6 @@ nav .headerList {
     display:flex;
     justify-content: space-around;
     align-items: center;
-    text-align: justify;
 }
 
 /* section suppression */
