@@ -283,6 +283,7 @@ nav .headerList {
 
 .draft {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     margin: 20px 0;
 }
@@ -303,7 +304,7 @@ nav .headerList {
     box-shadow: var(--shadow-bloc);
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
-    width: 30%;
+    min-width: 300px;
     margin: 10px;
     padding:10px;
 }
@@ -331,9 +332,11 @@ nav .headerList {
 
 .imgCard {
     border-radius: var(--border-radius-medium);
+    width: 100%;
+    height: 100%;
     max-width: 200px;
     max-height: 200px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .descriptionCard {
