@@ -23,9 +23,9 @@ security:
                 # target: app_any_route
             login_throttling: null
 
-            # configure the maximum login attempts
+            # nombre de tentatives de connexion
             login_throttling:
-                max_attempts: 3          # per minute ...
+                max_attempts: 3          # par minutes
                 # interval: '15 minutes' # ... or in a custom period
 
             # activate different ways to authenticate
