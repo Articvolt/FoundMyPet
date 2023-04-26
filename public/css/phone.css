@@ -1,0 +1,17 @@
+@media screen and (max-width: 360px) {
+    .slogan {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    #logo {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        border-radius: 90%;
+        background-color: var(--white);
+        margin: 10px 30px;
+        flex: none;
+        position: absolute;
+    }
+}
