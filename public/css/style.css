@@ -304,7 +304,10 @@ nav .headerList {
     box-shadow: var(--shadow-bloc);
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
-    min-width: 300px;
+    /* largeur de la carte */
+    min-width: 350px;
+    width: 30%;
+    min-height: 400px;
     margin: 10px;
     padding:10px;
 }
@@ -354,7 +357,10 @@ nav .headerList {
 /* section suppression */
 .divDelete {
     text-align: center;
-    margin: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .btnDelete {
@@ -369,11 +375,13 @@ nav .headerList {
     margin: 20px auto;
     padding: 10px 20px;
     color: var(--black);
+
+    display: inline-block;
 }
 
 .btnDelete:hover {
-    background-color: var(--pink-smoothy);
-    color: var(--white);
+    background-color: var(--blue-light);
+    color: var(--white) !important;
 }
 
 .paginationBloc {
