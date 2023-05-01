@@ -485,7 +485,7 @@ textarea {
 }
 
 .submitAnnonce > button:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
