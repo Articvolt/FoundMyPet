@@ -141,8 +141,8 @@ nav .headerList {
     align-items: center;
 }
 
-.navLink {
-    color: var(--white);
+.anchorLink {
+    color: var(--white) !important;
     font-family: var(--font-lato);
     padding: 12px;
     text-transform: uppercase;
@@ -150,7 +150,7 @@ nav .headerList {
     position: relative;
 }
 
-.navLink::after {
+.anchorLink::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -163,7 +163,7 @@ nav .headerList {
     transition: opacity 0.3s ease;
 }
 
-.navLink:hover::after {
+.anchorLink:hover::after {
     width: 80%;
     transform: translateX(-50%);
     opacity: 1;
@@ -310,8 +310,14 @@ nav .headerList {
 }
 
 .annonceCard:hover {
-    transform: scale(1.02);  
+    transform: scale(1.02);
 }
+
+/* couleur black predomine bootstrap */
+.annonceCard a:hover {
+    color: var(--black) !important;
+}
+
 
 .iconCard {
     text-align: center;
@@ -368,6 +374,12 @@ nav .headerList {
 .btnDelete:hover {
     background-color: var(--pink-smoothy);
     color: var(--white);
+}
+
+.paginationBloc {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 /*==================================== TEMPLATE ANNONCE ====================================*/
