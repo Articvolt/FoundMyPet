@@ -248,7 +248,7 @@ nav .headerList {
 }
 
 .btnLogin:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
@@ -580,15 +580,15 @@ textarea {
 /* options de modifications profil */
 .optionProfil {
     border: var(--border-input-form);
-    border-radius: var(--border-radius-medium);
+    border-radius: var(--border-radius-small);
     background-color: var(--white);
     transition: var(--transition-color-background-color);
     box-shadow: var(--shadow-bloc);
-    padding: 5px;
+    padding: 10px 20px;
 }
 
 .optionProfil:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
