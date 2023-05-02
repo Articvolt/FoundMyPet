@@ -1,14 +1,13 @@
 @media screen and (max-width: 320px) {
 
+
+
+}
+
+@media screen and (max-width: 470px) {
+
     #logo {
-        width: 40px;
-        height: 40px;
-        padding: 5px;
-        border-radius: 90%;
-        background-color: var(--white);
-        margin: 10px 30px;
-        flex: none;
-        position: absolute;
+       display: none;
     }
 
 }
