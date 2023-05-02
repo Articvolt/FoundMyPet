@@ -293,6 +293,11 @@ nav .headerList {
     color: var(--black);
 }
 
+.annonceCardLink:hover {
+    /* couleur black predomine bootstrap */
+    color: var(--black) !important;
+}
+
 .annonceCardLink h2 {
     text-align: center;
     margin: 10px auto;
@@ -315,12 +320,6 @@ nav .headerList {
 .annonceCard:hover {
     transform: scale(1.02);
 }
-
-/* couleur black predomine bootstrap */
-.annonceCard a:hover {
-    color: var(--black) !important;
-}
-
 
 .iconCard {
     text-align: center;
@@ -375,7 +374,6 @@ nav .headerList {
     margin: 20px auto;
     padding: 10px 20px;
     color: var(--black);
-
     display: inline-block;
 }
 
@@ -439,8 +437,22 @@ nav .headerList {
     display: flex;  
 }
 
-.formBloc {
-    width: 50%;
+.leftBloc {
+    width: 70%;
+}
+
+.rightBloc {
+    width: 30%;
+}
+
+.uploadBloc {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.separateLine {
+    margin: 20px 0;
 }
 
 .textFormBloc {
