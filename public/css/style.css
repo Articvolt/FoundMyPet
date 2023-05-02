@@ -133,6 +133,60 @@ header {
     margin: 0 auto;
 }
 
+
+/*------- MENU BURGER -------*/
+
+.menuButtonContainer {
+    display: none;
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+#menuToggle {
+    display: none;
+}
+
+.menuButton,
+.menuButton::before,
+.menuButton::after {
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 2px;
+}
+
+.menuButton::before {
+    content: '';
+    margin-top: -8px;
+}
+
+.menuButton::after {
+  content: '';
+  margin-top: 8px;
+}
+
+#menuToggle:checked + .menuButtonContainer .menuButton::before {
+  margin-top: 0px;
+  transform: rotate(405deg);
+}
+
+#menuToggle:checked + .menuButtonContainer .menuButton {
+  background: rgba(255, 255, 255, 0);
+}
+
+#menuToggle:checked + .menuButtonContainer .menuButton::after {
+  margin-top: 0px;
+  transform: rotate(-405deg);
+}
+
+
 /*------- BARRE DE NAVIGATION -------*/
 
 nav .headerList {

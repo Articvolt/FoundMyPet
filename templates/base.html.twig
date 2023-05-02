@@ -72,7 +72,14 @@
 
             {# BARRE DE NAVIGATION #}
             <nav>
-                <ul class="headerList">
+                {# bouton menu burger #}
+                <input id="menuToggle" type="checkbox" />
+                {#  #}
+                <label class='menuButtonContainer' for="menuToggle">
+                    <div class='menuButton'></div>
+                </label>
+
+                <ul class="headerList menu">
 
                     <li>
                         <a class="anchorLink" href="{{ path ('app_home') }}">ACCUEIL</a>
