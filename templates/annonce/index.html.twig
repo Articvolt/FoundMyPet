@@ -25,83 +25,115 @@
     
             {# identité annonceur #}
             <div class="formDesc">
-                <div class="alignAnnonce formBloc">
-                    <div>   
-                        <p>{{ form_label(formAddAnnonce.prenomProprietaire) }}</p>
-                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.prenomProprietaire) }}</p>
+                <div class="leftBloc">
+                    <h4 class="h4Form">auteur de l'annonce</h4>  
+                    <div class="alignAnnonce">
+                        <div>   
+                            <p>{{ form_label(formAddAnnonce.prenomProprietaire) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.prenomProprietaire) }}</p>
+                        </div>
+                        <div>   
+                            <p>{{ form_label(formAddAnnonce.nomProprietaire) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.nomProprietaire) }}</p>
+                        </div>
                     </div>
-                    <div>   
-                        <p>{{ form_label(formAddAnnonce.nomProprietaire) }}</p>
-                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.nomProprietaire) }}</p>
+
+            {# CONTACT #}
+
+                    <div>
+                        <h4 class="h4Form">comment me contacter ?</h4>  
+                        <div class="alignAnnonce">
+                            <div>   
+                                <p>{{ form_label(formAddAnnonce.telephone) }}</p>
+                                <p class="inputAnnonce">{{ form_widget(formAddAnnonce.telephone) }}</p>
+                            </div>
+                            <div>   
+                                <p>{{ form_label(formAddAnnonce.adresseMail) }}</p>
+                                <p class="inputAnnonce">{{ form_widget(formAddAnnonce.adresseMail) }}</p>
+                            </div>
+                        </div>
                     </div>
+                    <h4 class="h4Form">Coordonnées de l'annonce</h4>
                 </div>
-                <hr>
-                <div class="formBloc">
+
+                <div class="rightBloc">
                     <h4 class="h4Form">Que faisons-nous de vos données ?</h4>
                     <p class="textFormBloc">L'utilisation des données que vous avez fournies ne seront utilisées que dans le cadre de site internet et à usage ...</p>
                 </div>
             </div>
-    
-    
-            {# comment le contacter #}
-            <div>
-                <h4 class="h4Form">comment me contacter ?</h4>
-        
+
+            {# COORDONNEES #}
+
+            <div> 
                 <div class="alignAnnonce">
-                    <div>   
-                        <p>{{ form_label(formAddAnnonce.telephone) }}</p>
-                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.telephone) }}</p>
+                    <div>
+                        <p>{{ form_label(formAddAnnonce.adresse) }} </p>
+                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.adresse) }}</p>   
+                    </div>
+                    <div>
+                        <p>{{ form_label(formAddAnnonce.codePostal) }} </p>
+                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.codePostal) }}</p>   
                     </div>
                     <div>   
-                        <p>{{ form_label(formAddAnnonce.adresseMail) }}</p>
-                        <p class="inputAnnonce">{{ form_widget(formAddAnnonce.adresseMail) }}</p>
+                        <p> {{ form_label(formAddAnnonce.ville) }}</p>
+                        <p class="inputAnnonce"> {{ form_widget(formAddAnnonce.ville) }}</p>
                     </div>
                 </div>
             </div>
-    
-            {# coordonnées de l'annonce #}
-            <h4 class="h4Form">Coordonnées de l'annonce</h4>
-    
-            <div class="alignAnnonce">
-                <div>
-                    <p>{{ form_label(formAddAnnonce.adresse) }} </p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.adresse) }}</p>   
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.codePostal) }} </p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.codePostal) }}</p>   
-                </div>
-                <div>   
-                    <p> {{ form_label(formAddAnnonce.ville) }}</p>
-                    <p class="inputAnnonce"> {{ form_widget(formAddAnnonce.ville) }}</p>
-                </div>
-            </div>
-                
-    
-            {# catégorie de l'animal #}
+
+            <hr class="separateLine">
+              
             <h3 class="h3Form">L'animal</h3>
-    
-            <div class="alignAnnonce">
-                <div>
-                    <p>{{ form_label(formAddAnnonce.espece) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.espece) }}</p>
+
+            <div class="formDesc">
+
+                {# CATEGORIE #}
+
+                <div class="leftBloc">
+
+                    <h4 class="h4Form">statut de l'annonce</h4>  
+                    
+                    <div class="alignAnnonce">
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.espece) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.espece) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.nomAnimal) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.nomAnimal) }}</p>
+                        </div>
+            
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.category) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.category) }}</p>
+                        </div>
+                    </div> 
+
+                {# VISUELLE #}
+                    
+                <h4 class="h4Form">couleurs</h4>
+            
+                    <div class="alignAnnonce">
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.taillePoil) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.taillePoil) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.couleurPoil) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.couleurPoil) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.dessinPoil) }}</p>
+                            <p class="inputAnnonce">{{ form_widget(formAddAnnonce.dessinPoil) }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.nomAnimal) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.nomAnimal) }}</p>
-                </div>
-    
-                <div>
-                    <p>{{ form_label(formAddAnnonce.category) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.category) }}</p>
-                </div>
-    
-                {# UPLOAD #}
-    
-                <div>
+
+            {# UPLOAD #} 
+                <div class="rightBloc uploadBloc">
                     <p class="inputAnnonce">{{ form_row(formAddAnnonce.image) }}</p>
-                </div>    
-            </div> 
+                </div>
+            </div>
     
             {# données de l'animal #}
             <h4 class="h4Form">informations d'indentifications</h4>
@@ -124,26 +156,6 @@
                     <p class="inputAnnonce">{{ form_widget(formAddAnnonce.tatoue) }}</p>
                 </div>
             </div> 
-    
-    
-            {# identitfication visuelle de l'animal #}
-            <h4 class="h4Form">couleurs</h4>
-    
-            <div class="alignAnnonce">
-                <div>
-                    <p>{{ form_label(formAddAnnonce.taillePoil) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.taillePoil) }}</p>
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.couleurPoil) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.couleurPoil) }}</p>
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.dessinPoil) }}</p>
-                    <p class="inputAnnonce">{{ form_widget(formAddAnnonce.dessinPoil) }}</p>
-                </div>
-    
-            </div>
     
             <div>
                 <p>{{ form_label(formAddAnnonce.description) }}</p>

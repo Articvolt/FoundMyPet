@@ -26,12 +26,12 @@
                 {# {{ form_label(registrationForm.plainPassword) }}
                 {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'inputLogin'}}) }}           #}
             </div>
-        <div>
-            <a class="linkLogin" href="{{ path('app_CGU') }}">
-                conditions d'utilisation
-            </a>
-            {{ form_widget(registrationForm.agreeTerms) }}
-        </div>
+            <div>
+                <a class="linkLogin" href="{{ path('app_CGU') }}">
+                    conditions d'utilisation
+                </a>
+                {{ form_widget(registrationForm.agreeTerms) }}
+            </div>
     
         <button type="submit" class="btnLogin">s'enregistrer</button>
         {{ form_end(registrationForm) }}

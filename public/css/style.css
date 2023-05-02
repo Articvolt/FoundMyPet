@@ -141,8 +141,8 @@ nav .headerList {
     align-items: center;
 }
 
-.navLink {
-    color: var(--white);
+.anchorLink {
+    color: var(--white) !important;
     font-family: var(--font-lato);
     padding: 12px;
     text-transform: uppercase;
@@ -150,7 +150,7 @@ nav .headerList {
     position: relative;
 }
 
-.navLink::after {
+.anchorLink::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -163,7 +163,7 @@ nav .headerList {
     transition: opacity 0.3s ease;
 }
 
-.navLink:hover::after {
+.anchorLink:hover::after {
     width: 80%;
     transform: translateX(-50%);
     opacity: 1;
@@ -248,7 +248,7 @@ nav .headerList {
 }
 
 .btnLogin:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
@@ -293,6 +293,11 @@ nav .headerList {
     color: var(--black);
 }
 
+.annonceCardLink:hover {
+    /* couleur black predomine bootstrap */
+    color: var(--black) !important;
+}
+
 .annonceCardLink h2 {
     text-align: center;
     margin: 10px auto;
@@ -304,13 +309,16 @@ nav .headerList {
     box-shadow: var(--shadow-bloc);
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
-    min-width: 300px;
+    /* largeur de la carte */
+    min-width: 350px;
+    width: 30%;
+    min-height: 400px;
     margin: 10px;
     padding:10px;
 }
 
 .annonceCard:hover {
-    transform: scale(1.02);  
+    transform: scale(1.02);
 }
 
 .iconCard {
@@ -348,7 +356,10 @@ nav .headerList {
 /* section suppression */
 .divDelete {
     text-align: center;
-    margin: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .btnDelete {
@@ -363,11 +374,18 @@ nav .headerList {
     margin: 20px auto;
     padding: 10px 20px;
     color: var(--black);
+    display: inline-block;
 }
 
 .btnDelete:hover {
-    background-color: var(--pink-smoothy);
-    color: var(--white);
+    background-color: var(--blue-light);
+    color: var(--white) !important;
+}
+
+.paginationBloc {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 /*==================================== TEMPLATE ANNONCE ====================================*/
@@ -406,7 +424,7 @@ nav .headerList {
     padding: var(--padding-medium);
     text-align: center;
     font-style: italic;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .alignAnnonce {
@@ -417,10 +435,25 @@ nav .headerList {
 
 .formDesc {
     display: flex;  
+    flex-wrap: wrap;
 }
 
-.formBloc {
-    width: 50%;
+.leftBloc {
+    width: 70%;
+}
+
+.rightBloc {
+    width: 30%;
+}
+
+.uploadBloc {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.separateLine {
+    margin: 20px 0;
 }
 
 .textFormBloc {
@@ -465,7 +498,7 @@ textarea {
 }
 
 .submitAnnonce > button:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
@@ -580,15 +613,15 @@ textarea {
 /* options de modifications profil */
 .optionProfil {
     border: var(--border-input-form);
-    border-radius: var(--border-radius-medium);
+    border-radius: var(--border-radius-small);
     background-color: var(--white);
     transition: var(--transition-color-background-color);
     box-shadow: var(--shadow-bloc);
-    padding: 5px;
+    padding: 10px 20px;
 }
 
 .optionProfil:hover {
-    background-color: var(--pink-smoothy);
+    background-color: var(--blue-light);
     color: var(--white);
 }
 
