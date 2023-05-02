@@ -77,4 +77,11 @@
         bottom: -10px;
         padding: 0;
     }
+
+
+    /* image annonce */
+
+    .imgCard {
+        max-width: 150px;
+    }
 }
