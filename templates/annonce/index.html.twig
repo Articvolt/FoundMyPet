@@ -26,6 +26,7 @@
             {# identité annonceur #}
             <div class="formDesc">
                 <div class="leftBloc">
+                    <h4 class="h4Form">auteur de l'annonce</h4>  
                     <div class="alignAnnonce">
                         <div>   
                             <p>{{ form_label(formAddAnnonce.prenomProprietaire) }}</p>
@@ -52,6 +53,7 @@
                             </div>
                         </div>
                     </div>
+                    <h4 class="h4Form">Coordonnées de l'annonce</h4>
                 </div>
 
                 <div class="rightBloc">
@@ -63,7 +65,6 @@
             {# COORDONNEES #}
 
             <div> 
-                <h4 class="h4Form">Coordonnées de l'annonce</h4>
                 <div class="alignAnnonce">
                     <div>
                         <p>{{ form_label(formAddAnnonce.adresse) }} </p>
@@ -89,6 +90,9 @@
                 {# CATEGORIE #}
 
                 <div class="leftBloc">
+
+                    <h4 class="h4Form">statut de l'annonce</h4>  
+                    
                     <div class="alignAnnonce">
                         <div>
                             <p>{{ form_label(formAddAnnonce.espece) }}</p>

@@ -424,7 +424,7 @@ nav .headerList {
     padding: var(--padding-medium);
     text-align: center;
     font-style: italic;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .alignAnnonce {
@@ -435,6 +435,7 @@ nav .headerList {
 
 .formDesc {
     display: flex;  
+    flex-wrap: wrap;
 }
 
 .leftBloc {
