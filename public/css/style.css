@@ -656,6 +656,7 @@ textarea {
 .filterList {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 /* disposition bouton */
