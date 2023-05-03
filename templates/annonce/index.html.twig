@@ -54,32 +54,29 @@
                         </div>
                     </div>
                     <h4 class="h4Form">Coordonnées de l'annonce</h4>
+                    <div class="alignAnnonce">
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.adresse) }} </p>
+                            <p>{{ form_widget(formAddAnnonce.adresse, {'attr': {'class': 'inputAnnonce'}} ) }}</p>   
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.codePostal) }} </p>
+                            <p>{{ form_widget(formAddAnnonce.codePostal, {'attr': {'class': 'inputAnnonce'}} ) }}</p>   
+                        </div>
+                        <div>   
+                            <p> {{ form_label(formAddAnnonce.ville) }}</p>
+                            <p> {{ form_widget(formAddAnnonce.ville, {'attr': {'class': 'inputAnnonce'}} ) }}</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="rightBloc">
-                    <h4 class="h4Form">Que faisons-nous de vos données ?</h4>
+                    <h4 class="h4Form h4text">Que faisons-nous de vos données ?</h4>
                     <p class="textFormBloc">L'utilisation des données que vous avez fournies ne seront utilisées que dans le cadre de site internet et à usage ...</p>
                 </div>
             </div>
 
             {# COORDONNEES #}
-
-            <div> 
-                <div class="alignAnnonce">
-                    <div>
-                        <p>{{ form_label(formAddAnnonce.adresse) }} </p>
-                        <p>{{ form_widget(formAddAnnonce.adresse, {'attr': {'class': 'inputAnnonce'}} ) }}</p>   
-                    </div>
-                    <div>
-                        <p>{{ form_label(formAddAnnonce.codePostal) }} </p>
-                        <p>{{ form_widget(formAddAnnonce.codePostal, {'attr': {'class': 'inputAnnonce'}} ) }}</p>   
-                    </div>
-                    <div>   
-                        <p> {{ form_label(formAddAnnonce.ville) }}</p>
-                        <p> {{ form_widget(formAddAnnonce.ville, {'attr': {'class': 'inputAnnonce'}} ) }}</p>
-                    </div>
-                </div>
-            </div>
 
             <hr class="separateLine">
               
@@ -120,11 +117,31 @@
                         </div>
                         <div>
                             <p>{{ form_label(formAddAnnonce.couleurPoil) }}</p>
-                            <p>{{ form_widget(formAddAnnonce.couleurPoil) }}</p>
+                            <p>{{ form_widget(formAddAnnonce.couleurPoil, {'attr': {'class': 'checkboxAnnonce'}}) }}</p>
                         </div>
                         <div>
                             <p>{{ form_label(formAddAnnonce.dessinPoil) }}</p>
                             <p>{{ form_widget(formAddAnnonce.dessinPoil, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
+                        </div>
+                    </div>
+                    <h4 class="h4Form">informations d'indentifications</h4>
+        
+                    <div class="alignAnnonce">
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.ageAnimal) }}</p>
+                            <p>{{ form_widget(formAddAnnonce.ageAnimal, {'attr': {'class': 'inputSelectAnnonce ageSelect'}} ) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.sexeAnimal) }}</p>
+                            <p>{{ form_widget(formAddAnnonce.sexeAnimal, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.puce) }}</p>
+                            <p>{{ form_widget(formAddAnnonce.puce, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
+                        </div>
+                        <div>
+                            <p>{{ form_label(formAddAnnonce.tatoue) }}</p>
+                            <p>{{ form_widget(formAddAnnonce.tatoue, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
                         </div>
                     </div>
                 </div>
@@ -136,26 +153,7 @@
             </div>
     
             {# données de l'animal #}
-            <h4 class="h4Form">informations d'indentifications</h4>
-    
-            <div class="alignAnnonce">
-                <div>
-                    <p>{{ form_label(formAddAnnonce.ageAnimal) }}</p>
-                    <p>{{ form_widget(formAddAnnonce.ageAnimal, {'attr': {'class': 'inputSelectAnnonce ageSelect'}} ) }}</p>
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.sexeAnimal) }}</p>
-                    <p>{{ form_widget(formAddAnnonce.sexeAnimal, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.puce) }}</p>
-                    <p>{{ form_widget(formAddAnnonce.puce, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
-                </div>
-                <div>
-                    <p>{{ form_label(formAddAnnonce.tatoue) }}</p>
-                    <p>{{ form_widget(formAddAnnonce.tatoue, {'attr': {'class': 'inputSelectAnnonce'}} ) }}</p>
-                </div>
-            </div> 
+     
     
             <div>
                 <p class="titleForm">{{ form_label(formAddAnnonce.description) }}</p>

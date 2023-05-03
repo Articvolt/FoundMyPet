@@ -448,8 +448,9 @@ nav .headerList {
     border-radius: var(--border-radius-medium);
     background-color: var(--white);
     box-shadow: var(--shadow-bloc);
-    margin: 20px;
+    margin: 20px auto ;
     padding: 20px;
+    max-width: 1500px;
 }
 
 .h2Form {
@@ -500,29 +501,37 @@ nav .headerList {
 .formDesc {
     display: flex;  
     flex-wrap: wrap;
+    justify-content: space-between;
 }
-z                   
-.leftBloc {
+                 
+/* .leftBloc {
     width: 70%;
 }
-
+ */
 .rightBloc {
-    width: 30%;
+    max-width: 500px;
+    text-align: end;
 }
 
 .uploadBloc {
     align-items: center;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .separateLine {
     margin: 20px 0;
 }
 
+/* description informations */
 .textFormBloc {
     margin: 5px 40px;
-    align-items: center;
+    text-align: justify;
+}
+
+.h4text {
+    text-align: center;
 }
 
 .inputAnnonce {
@@ -550,6 +559,45 @@ z
 
 input:focus {
     border: var(--border-input-form-focus);  
+}
+
+/* checkbox couleur poil */
+.checkboxAnnonce label {
+    display: inline-block;
+    height: 30px;
+    font-size: 1em;
+    margin: 10px 2px;
+    padding: 5px;
+    border: none;
+    box-shadow: var(--shadow-form);
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+}
+
+.checkboxAnnonce input[type="checkbox"] {
+    display: none;
+}
+
+.checkboxAnnonce input[type="checkbox"]:checked + label {
+    background-color: #444;
+    color: #fff;
+}
+
+.checkboxAnnonce input[type="checkbox"]:checked + label:before {
+    content: "\2714";
+    font-size: 18px;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkboxAnnonce input[type="checkbox"]:focus + label {
+    outline: none;
+    box-shadow: 0 0 3px 3px #b3d4fc;
 }
 
 /* Styles pour le champ de texte */

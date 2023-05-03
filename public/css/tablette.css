@@ -100,4 +100,18 @@
     .passwordLogin {
         width: 100%;
     }
+
+    /*==================================== TEMPLATE ANNONCE ====================================*/
+
+    .uploadBloc {
+        margin:30px;
+    }
+
+    .h4Form {
+        text-align: center;
+    }
+
+    .alignAnnonce {
+        justify-content: center;
+    }
 }
