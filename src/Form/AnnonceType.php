@@ -25,7 +25,7 @@ class AnnonceType extends AbstractType
             // informations du propriétaire
 
             ->add('nomProprietaire', TextType::class,[
-                'label' => 'Nom '
+                'label' => 'Nom ',
                 ])
             ->add('prenomProprietaire', TextType::class,[
                 'label' => 'Prénom'

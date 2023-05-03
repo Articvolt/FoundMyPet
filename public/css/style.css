@@ -480,6 +480,15 @@ nav .headerList {
     margin: 20px 0;
 }
 
+/* titre textearea du formulaire */
+.titleForm {
+    font-size: var(--size-small-title);
+    padding: var(--padding-medium);
+    font-style: italic;
+    margin: 20px 0;
+    font-weight: bolder;
+}
+
 .alignAnnonce {
     display: flex;
     flex-wrap: wrap;
@@ -492,7 +501,7 @@ nav .headerList {
     display: flex;  
     flex-wrap: wrap;
 }
-
+z                   
 .leftBloc {
     width: 70%;
 }
@@ -516,6 +525,29 @@ nav .headerList {
     align-items: center;
 }
 
+.inputAnnonce {
+    height: 30px;
+    font-size: 1em;
+    border: none;
+    box-shadow: var(--shadow-form);
+    border-radius: var(--border-radius-medium);
+    margin: 10px 0;
+}
+
+.ageSelect {
+    text-align: center;
+}
+
+.inputSelectAnnonce {
+    height: 30px;
+    width: 100%;
+    font-size: 1em;
+    border: none;
+    box-shadow: var(--shadow-form);
+    border-radius: var(--border-radius-medium);
+    margin: 10px 0;
+}
+
 input:focus {
     border: var(--border-input-form-focus);  
 }
@@ -529,7 +561,7 @@ textarea {
     text-align: left;
     resize: vertical; /* Permet de redimensionner le champ verticalement */
 }
-  
+
 
 /* section bouton validation */
 .submitAnnonce {
@@ -946,4 +978,12 @@ footer {
     font-size: 20px;
     width: 50px;
     height: 50px;
+}
+
+/* adaptation du texte */
+@media screen and (max-width: 1300px) { 
+
+    .imgCard {
+        max-width: 150px;
+    }
 }

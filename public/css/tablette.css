@@ -91,4 +91,13 @@
         justify-content: center;
     } */
 
+    /*==================================== TEMPLATE LOGIN ====================================*/
+
+    .inputLogin {
+        width: 100%;
+    }
+
+    .passwordLogin {
+        width: 100%;
+    }
 }
