@@ -199,19 +199,11 @@
         </div>
     </div>
     
-
-    {# 
-        {{ dump(annonce) }}
-        {{ dump(datageo) }}
-        {{ dump(datageo[0].lat) }}
-        {{ dump(datageo[0].lon) }} 
-    #}
-
     <script>
-        // vérifie si les coordonnées sont valides
+        // condition IF si le tableau JSON possède des valeurs
         {% if datageo|length > 0 %}
             var map = L.map("map").setView([{{datageo[0].lat}},{{datageo[0].lon}}],16);
-        
+            {# création d'un cercle selon les coordonnées #}
             var circle = L.circle([{{datageo[0].lat}},{{datageo[0].lon}}], {
                 color: 'red',
                 fillColor: '#f03',
@@ -219,6 +211,7 @@
                 radius: 200
             }).addTo(map);
         {% else %}
+            {# cache la balise contenant la carte #}
             <style>
                 #map {display: none;}
             </style>

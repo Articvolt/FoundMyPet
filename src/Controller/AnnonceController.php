@@ -57,7 +57,10 @@ public function showOrEditMessage(Annonce $annonce, NominatimHttpClient $nominat
     }
 
     // leaflet
+
+    // récupère l'adresse complète (adresse+CP+ville)
     $adresse = $annonce->AdresseCompleteAPI();
+    // récupère la réponse JSON de la requête HTTP
     $datageo= $nominatim->getLocation($adresse);
 
     return $this->render( 'annonce/show.html.twig', [

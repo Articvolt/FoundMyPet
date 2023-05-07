@@ -25,13 +25,14 @@ class NominatimHttpClient extends AbstractController {
     public function __construct(HttpClientInterface $nominatim) {
         $this->httpClient = $nominatim;
     }
-
+    // création d'une fonction 
     public function getLocation($search) {
-
+        // préparation d'une requête HTTP avec une méthode GET et un URL en format JSON
         $response = $this->httpClient->request('GET', "/search?q=$search&format=json&limit=1", [
+            // désactive la vérification du certificat SSL (chiffrement des données)
             'verify_peer' => false,
         ]);
-
+        // retourne une reponse en tableau JSON
         return json_decode($response->getContent(), true);
     }
 }
