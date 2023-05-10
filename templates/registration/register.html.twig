@@ -3,6 +3,7 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
+    {# génère les messages d'erreur #}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
@@ -11,21 +12,23 @@
         <h2>Inscription</h2>
     
         {{ form_start(registrationForm) }}
+            {# adresse mail #}
             <div class="formColumn">
                 {{ form_label(registrationForm.email) }}
                 {{ form_widget(registrationForm.email, {'attr': {'class': 'inputLogin'}}) }}
             </div>
+            {# pseudonyme #}
             <div class="formColumn">
                 {{ form_label(registrationForm.pseudonyme) }}
                 {{ form_widget(registrationForm.pseudonyme, {'attr': {'class': 'inputLogin'}}) }}
             </div>
+            {# mot de passe #}
             <div class="formColumn">
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
                 }) }} 
-                {# {{ form_label(registrationForm.plainPassword) }}
-                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'inputLogin'}}) }}           #}
             </div>
+            {# Lien vers les mentions légales #}
             <div>
                 <a class="linkLogin" href="{{ path('app_CGU') }}">
                     conditions d'utilisation
